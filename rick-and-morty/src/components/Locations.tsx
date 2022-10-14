@@ -7,13 +7,26 @@ type LocationsProps = {
 }
 
 export const Locations: React.FC<LocationsProps> = ({}) => {
-    const [locations, setLocations] = useState<any>();
-    
+    const [fetchInt, setFetchInt] = useState<number | false>(3000);
+
+    // functions
     const getLocation =  () =>{
        return API.get('/location');
     }
 
-    const {isLoading, data, isError, isFetching, refetch} = useQuery(
+    const onSuccesFetch = () =>{
+        if(data?.data.results.length == 20){
+            setFetchInt(false);
+        }
+    }
+
+    const onFailedFatch = () =>{
+        console.log('trigger after failed data fetching');
+    }
+
+
+    // react query
+    const {isLoading, data, isError, error, isFetching, refetch} = useQuery(
         ['locations'], 
         getLocation, 
         {
@@ -26,13 +39,18 @@ export const Locations: React.FC<LocationsProps> = ({}) => {
             
             // refetchOnWindowFocus:'always', updatuje podatke ako dodje do promene bez obzira sto tab nije otvoren
     
-            // refetchInterval: 3000, odradi refetch na svakih 3sec dok je tab u fokusu, ako zelimo da sync podatke sa bazom nezavisno od interakcije usera
+            // odradi refetch na svakih 3sec dok je tab u fokusu, ako zelimo da sync podatke sa bazom nezavisno od interakcije usera
+            refetchInterval: fetchInt, 
 
             // refetchIntervalInBackground: 3000, radi isto sto i refetchInterval samo nije potrebno da tab bude otvoren 
 
             // enabled sprecava da se upucuju pozivi ka bazi, po defaultu je true, 
             // ako zelimo da na neki specifican event trigerujemo fetch onda prvo moramo da postavimo enalbed na false
-            enabled: false,
+            // enabled: false,
+
+            // funkcije koje ce biti izvrsene u odredjenim slucajevima
+            onSuccess: onSuccesFetch,
+            onError: onFailedFatch,
         }
     );
         
