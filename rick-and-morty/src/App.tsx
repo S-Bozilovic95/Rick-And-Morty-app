@@ -1,8 +1,11 @@
 import React from 'react';
+import './App.scss';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import {ReactQueryDevtools} from 'react-query/devtools';
-import './App.scss';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { Home } from './components/Home';
+import { Navbar } from './components/Navbar';
+import { Locations } from './components/Locations';
 
 const queryClient = new QueryClient();
 
@@ -10,7 +13,13 @@ function App() {
   return (
    <QueryClientProvider client={queryClient}>
       <div className="App">
-        <Home/>
+        <Router>
+          <Navbar/>
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/Locations' element={<Locations/>}/>
+          </Routes>
+        </Router>
       </div>
       <ReactQueryDevtools initialIsOpen={false} position='bottom-right'/>
    </QueryClientProvider>
