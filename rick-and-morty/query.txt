@@ -1,0 +1,30 @@
+// react query
+    const {isLoading, data, isError, error, isFetching, refetch} = useQuery(
+        ['locations'], 
+        getLocation, 
+        {
+            // cacheTime:5000, default je 5 min posle ga brise is cache
+
+            // staleTime: 30000, ne salje nove zahteve npr 30sec, ako smo sigurni da se podaci nece menjati neko vreme
+            // da ne bismo slali zahteve stalno, izbegavamo refetch
+
+            // refetchOnMount: false, prima boolean ili 'always' odradi refetch svaki put kad komp. mountuje
+            
+            // refetchOnWindowFocus:'always', updatuje podatke ako dodje do promene bez obzira sto tab nije otvoren
+    
+            // odradi refetch na svakih 3sec dok je tab u fokusu, ako zelimo da sync podatke sa bazom nezavisno od interakcije usera
+            // refetchInterval: 3000, 
+
+            // refetchIntervalInBackground: 3000, radi isto sto i refetchInterval samo nije potrebno da tab bude otvoren 
+
+            // enabled sprecava da se upucuju pozivi ka bazi, po defaultu je true, 
+            // ako zelimo da na neki specifican event trigerujemo fetch onda prvo moramo da postavimo enalbed na false
+            // enabled: false,
+
+            // funkcije koje ce biti izvrsene u odredjenim slucajevima
+            onSuccess: onSuccesFetch,
+            onError: onFailedFatch,
+
+            // select, filtrira podatke iz responsa
+        }
+    );

@@ -2,11 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-type NavbarProps = {
 
-}
 
-export const Navbar: React.FC<NavbarProps> = ({}) => {
+export const Navbar: React.FC = ({}) => {
 
 
     return (

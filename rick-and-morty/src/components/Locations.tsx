@@ -1,59 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import API from '../assets/api';
 import {useQuery} from 'react-query';
+import { Link } from 'react-router-dom';
 
-type LocationsProps = {
 
-}
-
-export const Locations: React.FC<LocationsProps> = ({}) => {
-    const [fetchInt, setFetchInt] = useState<number | false>(3000);
+export const Locations: React.FC = ({}) => {
+    const [locations, setLocations] = useState<any | undefined>();
+    const [characters, setCharacters] = useState<any | undefined>();
 
     // functions
-    const getLocation =  () =>{
-       return API.get('/location');
+    const fetchData =  (sufix: string) =>{
+       return API.get(`/${sufix}`);
     }
 
-    const onSuccesFetch = () =>{
-        if(data?.data.results.length == 20){
-            setFetchInt(false);
-        }
-    }
-
-    const onFailedFatch = () =>{
-        console.log('trigger after failed data fetching');
-    }
 
 
     // react query
-    const {isLoading, data, isError, error, isFetching, refetch} = useQuery(
-        ['locations'], 
-        getLocation, 
-        {
-            // cacheTime:5000, default je 5 min posle ga brise is cache
+    const {isLoading, data: local, isError, isFetching, refetch} = useQuery('locations', ()=>fetchData('location'),{enabled:false});
 
-            // staleTime: 30000, ne salje nove zahteve npr 30sec, ako smo sigurni da se podaci nece menjati neko vreme
-            // da ne bismo slali zahteve stalno, izbegavamo refetch
-
-            // refetchOnMount: false, prima boolean ili 'always' odradi refetch svaki put kad komp. mountuje
-            
-            // refetchOnWindowFocus:'always', updatuje podatke ako dodje do promene bez obzira sto tab nije otvoren
-    
-            // odradi refetch na svakih 3sec dok je tab u fokusu, ako zelimo da sync podatke sa bazom nezavisno od interakcije usera
-            refetchInterval: fetchInt, 
-
-            // refetchIntervalInBackground: 3000, radi isto sto i refetchInterval samo nije potrebno da tab bude otvoren 
-
-            // enabled sprecava da se upucuju pozivi ka bazi, po defaultu je true, 
-            // ako zelimo da na neki specifican event trigerujemo fetch onda prvo moramo da postavimo enalbed na false
-            // enabled: false,
-
-            // funkcije koje ce biti izvrsene u odredjenim slucajevima
-            onSuccess: onSuccesFetch,
-            onError: onFailedFatch,
-        }
-    );
+   const {data: char} = useQuery('characters',()=>fetchData('character'));
         
+    useEffect(()=>{
+        if(local){
+            setLocations(local?.data.results);
+        }
+
+        if(char){
+            setCharacters(char.data.results)
+        }
+    },[local, char]);
+
 
     if(isLoading || isFetching){
         return <h2>Loading...</h2>
@@ -63,11 +39,19 @@ export const Locations: React.FC<LocationsProps> = ({}) => {
         return <h2>failed</h2>
     }
 
+    
+
     return (
         <>
             <button onClick={()=> refetch()} >Fetch Locations</button>
-            {data?.data.results.map((loc:any) =>{
-                return <h2 key={loc.id}>{loc.name}</h2> 
+            <h3>Locations:</h3>
+            {locations?.map((el:any) =>{
+                return <p key={el.id}>{el.name}</p> 
+            })}
+
+            <h3>Characters:</h3>
+            {characters?.map((el:any) =>{
+                return <Link to={`/CharacterDetails/${el.id}`} key={el.id}>{el.name}</Link> 
             })}
         </>
     );

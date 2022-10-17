@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { Home } from './components/Home';
 import { Navbar } from './components/Navbar';
 import { Locations } from './components/Locations';
+import { CharacterDetails } from './components/CharacterDetails';
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/Locations' element={<Locations/>}/>
+            <Route path='/CharacterDetails/:charID' element={<CharacterDetails/>}/>
           </Routes>
         </Router>
       </div>
