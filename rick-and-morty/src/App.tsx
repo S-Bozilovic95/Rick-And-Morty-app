@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.scss';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import {ReactQueryDevtools} from 'react-query/devtools';
@@ -7,6 +6,8 @@ import { Home } from './components/Home';
 import { Navbar } from './components/Navbar';
 import { Locations } from './components/Locations';
 import { CharacterDetails } from './components/CharacterDetails';
+import { Characters } from './components/Characters';
+import { Episodes } from './components/Episodes';
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,8 @@ function App() {
           <Navbar/>
           <Routes>
             <Route path='/' element={<Home/>}/>
+            <Route path='/Characters' element={<Characters/>}/>
+            <Route path='/Episodes' element={<Episodes/>}/>
             <Route path='/Locations' element={<Locations/>}/>
             <Route path='/CharacterDetails/:charID' element={<CharacterDetails/>}/>
           </Routes>

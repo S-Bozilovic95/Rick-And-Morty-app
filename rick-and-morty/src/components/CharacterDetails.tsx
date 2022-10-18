@@ -14,7 +14,7 @@ export const CharacterDetails: React.FC = ({}) => {
     }
 
     const handleBack = () =>{
-        navigate("/Locations");
+        navigate("/Characters");
     }
 
     const {data} = useQuery('charDetails',()=>fetchData(`character/${charID}`));

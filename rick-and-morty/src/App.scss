@@ -1,7 +1,39 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+
+// Variables
+@import "./style/variables.scss";
+
+// Components
+@import "./style/navbar.scss";
+
+// default syles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.6;
+  font-family: "Lato", sans-serif;
+  scroll-behavior: smooth;
+  background-color: $background;
+}
+
+ul {
+  list-style-type: none;
+}
+
 a {
-  display: block;
   text-decoration: none;
-  font-size: 1.2rem;
-  color: rgb(156, 43, 43);
-  margin-bottom: 2px;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
