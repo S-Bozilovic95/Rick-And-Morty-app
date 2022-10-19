@@ -1,10 +1,6 @@
 import React from 'react'
 
-type HomeProps = {
-
-}
-
-export const Home: React.FC<HomeProps> = ({}) => {
+export const Home: React.FC = () => {
 
 
     return (

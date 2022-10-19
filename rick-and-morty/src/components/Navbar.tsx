@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {FiMenu} from 'react-icons/fi';
-import {MdClose} from 'react-icons/md';
 
 
-export const Navbar: React.FC = ({}) => {
+
+export const Navbar: React.FC = () => {
     const[active,setActive] = useState<boolean>(false);
 
     const handleActive=()=>{

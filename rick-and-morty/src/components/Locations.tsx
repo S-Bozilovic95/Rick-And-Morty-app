@@ -3,7 +3,7 @@ import API from '../assets/api';
 import {useQuery} from 'react-query';
 
 
-export const Locations: React.FC = ({}) => {
+export const Locations: React.FC = () => {
     const [locations, setLocations] = useState<any | undefined>();
 
     // functions
