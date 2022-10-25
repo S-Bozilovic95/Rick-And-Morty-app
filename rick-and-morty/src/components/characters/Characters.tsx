@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import API from '../assets/api';
+import API from '../../assets/api';
 import {useQuery} from 'react-query';
 import { Link } from 'react-router-dom';
 

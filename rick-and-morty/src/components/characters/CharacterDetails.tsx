@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
-import API from '../assets/api';
+import API from '../../assets/api';
 
 
 export const CharacterDetails: React.FC = ({}) => {
