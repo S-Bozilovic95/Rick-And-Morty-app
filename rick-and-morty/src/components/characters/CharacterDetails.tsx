@@ -1,42 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import { useQuery } from 'react-query';
-import { useParams, useNavigate } from 'react-router-dom';
-import API from '../../assets/api';
+import { useQuery } from "react-query";
+import { useParams, useNavigate } from "react-router-dom";
+import { getSingleCharacter } from "../../api/characters";
 
+export const CharacterDetails: React.FC = () => {
+  const { charID } = useParams();
+  const navigate = useNavigate();
 
-export const CharacterDetails: React.FC = ({}) => {
-    const [character, setCharacter] = useState<any | undefined>();
-    const {charID} = useParams();
-    const navigate = useNavigate();
+  const handleBack = () => {
+    navigate("/Characters");
+  };
 
-    const fetchData =  (sufix: string) =>{
-        return API.get(`/${sufix}`);
-    }
+  const { data: singleChar } = useQuery("charDetails", () =>
+    getSingleCharacter(charID)
+  );
+  // console.log(typeof charID);
 
-    const handleBack = () =>{
-        navigate("/Characters");
-    }
+  return (
+    <>
+      <div>
+        <img src={singleChar?.data.image} alt="character" />
+        <h4>{singleChar?.data.name}</h4>
+        <p>{singleChar?.data.species}</p>
+      </div>
 
-    const {data} = useQuery('charDetails',()=>fetchData(`character/${charID}`));
-
-    // useEffect(()=>{
-    //     if(data){
-    //         setCharacter(data?.data)
-    //     }
-    // },[data])
-    
-console.log(data?.data);
-
-    return (
-        <>
-            <div>
-                <img src={data?.data.image}/>
-                <h4>{data?.data.name}</h4>
-                <p>{data?.data.species}</p>
-
-            </div>
-
-            <button onClick={()=>handleBack()}>Back</button>
-        </>
-    );
-}
+      <button onClick={() => handleBack()}>Back</button>
+    </>
+  );
+};

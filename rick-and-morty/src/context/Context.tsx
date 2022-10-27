@@ -1,30 +1,17 @@
-import React, { createContext } from 'react';
-import API from '../assets/api';
+import React, { createContext } from "react";
 
-type InitialType = {
-    fetchData: (sufix: string) => void,
-}
+type InitialType = {};
 
-const initialState ={
-    fetchData: (sufix: string) =>{},
-}
+const initialState = {};
 
 export const Context = createContext<InitialType>(initialState);
 
-type ContextRmProviderProps ={
-    children: React.ReactNode;
-}
+type ContextRmProviderProps = {
+  children: React.ReactNode;
+};
 
-export const ContextRmProvider: React.FC<ContextRmProviderProps> = ({children}) => {
-
-    // functions
-    const fetchData =  (sufix: string) =>{
-        return API.get(`/${sufix}`);
-    }
-
-    return (
-        <Context.Provider value={{fetchData}}>
-            {children}
-        </Context.Provider>
-    );
-}
+export const ContextRmProvider: React.FC<ContextRmProviderProps> = ({
+  children,
+}) => {
+  return <Context.Provider value={{}}>{children}</Context.Provider>;
+};

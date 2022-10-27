@@ -3,30 +3,37 @@ import { request } from "../request";
 export const getAllCharacters = () => {
   return request({
     url: "/character",
-    method: "get",
+    method: "GET",
   });
 };
 
-export const getSingleCharacter = (param: number) => {
+export const getSingleCharacter = (param: string | undefined) => {
   return request({
     url: `/character/${param}`,
-    method: "get",
+    method: "GET",
   });
 };
 
 export const getMultipleCharacters = (param: number[]) => {
   return request({
     url: `/character/${param}`,
-    method: "get",
+    method: "GET",
   });
 };
 
-// u slucaju da se filteri ne nadovezuje na url (/character?name=rick)
 export const getFilteredCharacters = (param: any) => {
   return request({
-    url: `/character/filter`,
-    method: "get",
-    data: param,
+    url: `/character/?${param}`,
+    method: "GET",
   });
 };
-//   getFilteredCharacters({name: Rick, status: Alive, order: asc})
+
+// u slucaju da se filteri ne nadovezuju na url kao gore (/character/?name=rick&status=alive)
+// export const getFilteredCharacters = (param: any) => {
+//   return request({
+//     url: `/character/filter`,
+//     method: "get",
+//     data: param,
+//   });
+// };
+//   getFilteredCharacters({name:Rick, status:Alive, order:asc})
