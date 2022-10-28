@@ -15,6 +15,11 @@ export const CharacterDetails: React.FC = () => {
   );
   // console.log(typeof charID);
 
+  // const { data: singleChar } = useQuery("charDetails", async () => {
+  //   const { data: res } = await getSingleCharacter(charID);
+  //   return res.data;
+  // });
+
   return (
     <>
       <div>
