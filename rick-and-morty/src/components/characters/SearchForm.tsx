@@ -1,15 +1,19 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Form, Formik, Field } from "formik";
 import * as yup from "yup";
 import { useQuery } from "react-query";
 import { getFilteredCharacters } from "../../api/characters";
 
-export const SearchForm: FC = () => {
+type SearchFormProps = {
+  setSingleChar: (singleChar: any) => void;
+};
+
+export const SearchForm: FC<SearchFormProps> = ({ setSingleChar }) => {
   let name = "";
 
   const { data: wantedChar, refetch } = useQuery(
     "wantedCharacter",
-    () => getFilteredCharacters(`name=${name}`),
+    () => getFilteredCharacters(`name=${name}&status=alive`),
     {
       enabled: false,
     }
@@ -29,7 +33,10 @@ export const SearchForm: FC = () => {
     resetForm();
   };
 
-  console.log(wantedChar);
+  useEffect(() => {
+    setSingleChar(wantedChar?.data.results[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wantedChar]);
 
   return (
     <Formik

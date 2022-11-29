@@ -1,4 +1,4 @@
-export type characterType = {
+export type CharacterType = {
   info: {
     count: number;
     paages: number;

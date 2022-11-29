@@ -1,15 +1,7 @@
-import React from 'react'
+import React from "react";
 
-type EpisodesProps = {
+type EpisodesProps = {};
 
-}
-
-export const Episodes: React.FC<EpisodesProps> = ({}) => {
-
-
-    return (
-        <>
-            Episodes
-        </>
-    );
-}
+export const Episodes: React.FC<EpisodesProps> = () => {
+  return <>Episodes</>;
+};

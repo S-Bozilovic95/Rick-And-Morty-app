@@ -60,7 +60,7 @@
 
     &__item {
       text-align: center;
-      margin-top: 25px;
+      margin: 20px;
 
       &::after {
         content: "";
@@ -139,7 +139,7 @@
 }
 
 .activeMenu {
-  max-height: 50vh;
+  max-height: 500px;
   padding: 30px 0px;
   box-shadow: 0 4px 6px 5px rgba(0, 0, 0, 0.404);
   transition: $transitionIn;

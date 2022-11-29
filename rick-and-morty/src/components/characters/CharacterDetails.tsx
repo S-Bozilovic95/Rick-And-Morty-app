@@ -1,8 +1,9 @@
+import { FC } from "react";
 import { useQuery } from "react-query";
 import { useParams, useNavigate } from "react-router-dom";
 import { getSingleCharacter } from "../../api/characters";
 
-export const CharacterDetails: React.FC = () => {
+export const CharacterDetails: FC = () => {
   const { charID } = useParams();
   const navigate = useNavigate();
 
