@@ -14,12 +14,6 @@ export const CharacterDetails: FC = () => {
   const { data: singleChar } = useQuery("charDetails", () =>
     getSingleCharacter(charID)
   );
-  // console.log(typeof charID);
-
-  // const { data: singleChar } = useQuery("charDetails", async () => {
-  //   const { data: res } = await getSingleCharacter(charID);
-  //   return res.data;
-  // });
 
   return (
     <>

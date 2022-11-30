@@ -9,22 +9,33 @@ export const Characters: FC = () => {
   const { data: char } = useQuery("characters", () => getAllCharacters());
   const [singleChar, setSingleChar] = useState();
 
+  const handleSearch = (value: any) => {
+    setSingleChar(value);
+  };
+
   return (
     <section className="characters container">
       <h3 className="characters__title">Characters:</h3>
-      <SearchForm setSingleChar={setSingleChar} />
+      <SearchForm handleSearch={handleSearch} />
       <SingleCharacter singleChar={singleChar} />
 
-      <h3>All Characters:</h3>
-      {char?.data.results?.map((el: any) => {
-        return (
-          <div key={el.id}>
-            <img src={el?.image} alt="character" />
-            <h4>{el?.name}</h4>
-            <Link to={`/CharacterDetails/${el.id}`}>{el.name}</Link>
-          </div>
-        );
-      })}
+      <h3 className="characters__subtitle">All Characters:</h3>
+      <div className="characters__card-box">
+        {char?.data.results?.map((el: any) => {
+          return (
+            <div className="characters__card-box__card" key={el.id}>
+              <img
+                className="characters__card-box__card__image"
+                src={el?.image}
+                alt="character"
+              />
+              <h4 className="characters__card-box__card__name">
+                <Link to={`/CharacterDetails/${el.id}`}>{el.name}</Link>
+              </h4>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 };

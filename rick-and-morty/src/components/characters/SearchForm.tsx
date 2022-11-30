@@ -5,10 +5,10 @@ import { useQuery } from "react-query";
 import { getFilteredCharacters } from "../../api/characters";
 
 type SearchFormProps = {
-  setSingleChar: (singleChar: any) => void;
+  handleSearch: (value: any) => void;
 };
 
-export const SearchForm: FC<SearchFormProps> = ({ setSingleChar }) => {
+export const SearchForm: FC<SearchFormProps> = ({ handleSearch }) => {
   let name = "";
 
   const { data: wantedChar, refetch } = useQuery(
@@ -34,7 +34,7 @@ export const SearchForm: FC<SearchFormProps> = ({ setSingleChar }) => {
   };
 
   useEffect(() => {
-    setSingleChar(wantedChar?.data.results[0]);
+    handleSearch(wantedChar?.data.results[0]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wantedChar]);
 

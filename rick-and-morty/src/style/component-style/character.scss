@@ -1,0 +1,41 @@
+.characters {
+  padding: 50px 30px;
+
+  &__title {
+    font-size: 36px;
+    color: $blue;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  &__subtitle {
+    font-size: 25px;
+    color: $blue;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  &__card-box {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+
+    &__card {
+      flex: 0 0 20%;
+      margin: 20px;
+
+      &__image {
+        width: auto;
+        height: auto;
+        border-radius: 50%;
+        filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.226))
+          drop-shadow(0 4px 3px rgba(0, 0, 0, 0.397));
+      }
+
+      &__name {
+        text-align: center;
+      }
+    }
+  }
+}
