@@ -1,17 +1,44 @@
 .characters {
   padding: 50px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  &__title {
-    font-size: 36px;
-    color: $blue;
+  &__form {
     margin-bottom: 30px;
-    text-align: center;
+    position: relative;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__input {
+      padding: 10px;
+      width: 100%;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+    }
+
+    &__button {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      background: none;
+      border: none;
+      outline: none;
+      font-size: 1.5rem;
+      color: $yellow;
+      cursor: pointer;
+    }
   }
 
   &__subtitle {
     font-size: 25px;
     color: $blue;
     margin-bottom: 20px;
+    margin-top: 50px;
     text-align: center;
   }
 
@@ -35,6 +62,11 @@
 
       &__name {
         text-align: center;
+
+        a {
+          color: $darkRed;
+          font-size: 1.5rem;
+        }
       }
     }
   }

@@ -3,6 +3,7 @@ import { Form, Formik, Field } from "formik";
 import * as yup from "yup";
 import { useQuery } from "react-query";
 import { getFilteredCharacters } from "../../api/characters";
+import { FaSearch } from "react-icons/fa";
 
 type SearchFormProps = {
   handleSearch: (value: any) => void;
@@ -46,9 +47,15 @@ export const SearchForm: FC<SearchFormProps> = ({ handleSearch }) => {
       enableReinitialize
       handleSubmit
     >
-      <Form>
-        <Field name="wantedCharacter" type="text" />
-        <button type="submit">Search</button>
+      <Form className="characters__form">
+        <Field
+          className="characters__form__input"
+          name="wantedCharacter"
+          type="text"
+        />
+        <button type="submit" className="characters__form__button">
+          <FaSearch />
+        </button>
       </Form>
     </Formik>
   );
