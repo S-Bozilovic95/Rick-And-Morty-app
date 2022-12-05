@@ -24,12 +24,26 @@ body {
 }
 
 .video-background {
-  position: absolute;
-  top: 0;
+  z-index: -10;
+  position: fixed;
+  bottom: 0;
   left: 0;
+  min-height: 100%;
+  min-width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.video-overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  content: "";
+  display: block;
   width: 100%;
   height: 100%;
-  z-index: -10;
+  background-color: rgba(0, 0, 0, 0.637);
+  z-index: -8;
 }
 
 ul {
@@ -44,7 +58,77 @@ a {
   width: 80%;
   margin: auto;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     width: 100%;
+  }
+}
+
+.form {
+  margin-bottom: 30px;
+  position: relative;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__input {
+    padding: 10px 30px 10px 10px;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    text-overflow: ellipsis;
+    font-size: 0.8rem;
+    color: $dark;
+    text-transform: capitalize;
+  }
+
+  &__button {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    color: $dark;
+    cursor: pointer;
+    transition: ease-out 0.25s;
+
+    &:hover {
+      color: $yellow;
+      transition: ease-in 0.25s;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 85%;
+  }
+}
+
+.title {
+  font-size: 36px;
+  color: $rickBlue;
+  margin-bottom: 20px;
+  font-weight: 500;
+  text-align: center;
+
+  @media (max-width: 1024px) {
+    font-size: 30px;
+    margin-top: 20px;
+  }
+}
+
+.subtitle {
+  font-size: 25px;
+  color: $yellow;
+  margin-bottom: 20px;
+  font-weight: 500;
+  margin-top: 50px;
+  text-align: center;
+
+  @media (max-width: 1024px) {
+    font-size: 22px;
+    margin-top: 20px;
   }
 }

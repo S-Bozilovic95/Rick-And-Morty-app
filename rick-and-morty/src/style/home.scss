@@ -1,5 +1,5 @@
 .home {
-  padding: 50px 0px 10px 0px;
+  padding: 0px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,18 +17,19 @@
   }
 
   &__desc {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     text-align: center;
     width: 50%;
+    color: $white;
 
     a {
-      color: $darkRed;
+      color: $yellow;
       transition: $transitionOut;
       font-weight: 600;
 
       &:hover {
         transition: $transitionIn;
-        color: $yellow;
+        color: $darkRed;
       }
     }
 
@@ -44,19 +45,19 @@
 @media (max-width: 1024px) {
   .home {
     &__logo {
-      padding: 25px 0px 10px 0px;
+      margin-top: 50px;
       height: 50vh;
       width: 90%;
       margin-bottom: 10px;
     }
 
     &__desc {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       width: 90%;
 
       span {
         margin: 0px;
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
     }
   }

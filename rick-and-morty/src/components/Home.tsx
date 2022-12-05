@@ -10,9 +10,8 @@ export const Home: React.FC = () => {
         you need to know about your favorite show. Search for{" "}
         <Link to={"/Characters"}>Characters</Link>,{" "}
         <Link to={"/Episodes"}>Episodes</Link> or{" "}
-        <Link to={"/Locations"}>Locations</Link> and find every detail about{" "}
-        <br /> <span>Rick Sanchez</span>, <span>Morty Smith</span> and their
-        adventures.
+        <Link to={"/Locations"}>Locations</Link> and find every detail about
+        Rick & Morty and their adventures.
       </p>
     </section>
   );

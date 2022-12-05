@@ -8,7 +8,7 @@ export const CharacterDetails: FC = () => {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate("/Characters");
+    navigate("/");
   };
 
   const { data: singleChar } = useQuery("charDetails", () =>

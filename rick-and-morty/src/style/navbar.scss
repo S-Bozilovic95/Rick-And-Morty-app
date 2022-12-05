@@ -1,44 +1,51 @@
 .navbar {
+  &__logo {
+    width: 50px;
+  }
   //   regular
-  &__regular-menu {
+  &__box {
     background-color: $dark;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 0px 20px;
 
-    &__item {
-      margin: 0px 20px;
+    &__regular-menu {
+      display: flex;
+      justify-content: space-between;
+      &__item {
+        margin-left: 20px;
 
-      &::after {
-        content: "";
-        display: block;
-        height: 1px;
-        width: 0%;
-        background-color: $yellow;
-        transition: $transitionOut;
-      }
+        &::after {
+          content: "";
+          display: block;
+          height: 1px;
+          width: 0%;
+          background-color: $yellow;
+          transition: $transitionOut;
+        }
 
-      &:hover::after {
-        transition: $transitionIn;
-        width: 100%;
-      }
+        &:hover::after {
+          transition: $transitionIn;
+          width: 100%;
+        }
 
-      &:hover &__link {
-        transition: $transitionIn;
-        color: $yellow;
-      }
-
-      &__link {
-        transition: $transitionOut;
-        text-transform: capitalize;
-        color: $white;
-        font-size: 1.4rem;
-
-        &:active,
-        &:focus {
+        &:hover &__link {
+          transition: $transitionIn;
           color: $yellow;
+        }
+
+        &__link {
+          transition: $transitionOut;
+          text-transform: capitalize;
+          color: $white;
+          font-size: 1.2rem;
+
+          &:active,
+          &:focus {
+            color: $yellow;
+          }
         }
       }
     }
@@ -89,7 +96,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    margin: 20px;
+    margin: 10px;
     z-index: 10;
     width: 40px;
     height: 40px;
@@ -166,7 +173,7 @@
 //   responsive
 @media (max-width: 1024px) {
   .navbar {
-    &__regular-menu {
+    &__box {
       display: none;
     }
 

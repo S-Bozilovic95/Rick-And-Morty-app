@@ -32,10 +32,11 @@ export const SearchForm: FC<SearchFormProps> = ({ handleSearch }) => {
     name = values.wantedCharacter;
     refetch();
     resetForm();
+    handleSearch([]);
   };
 
   useEffect(() => {
-    handleSearch(wantedChar?.data.results[0]);
+    handleSearch(wantedChar?.data.results);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wantedChar]);
 
@@ -47,13 +48,14 @@ export const SearchForm: FC<SearchFormProps> = ({ handleSearch }) => {
       enableReinitialize
       handleSubmit
     >
-      <Form className="characters__form">
+      <Form className="form">
         <Field
-          className="characters__form__input"
+          className="form__input"
           name="wantedCharacter"
           type="text"
+          placeholder="search for your favorite character..."
         />
-        <button type="submit" className="characters__form__button">
+        <button type="submit" className="form__button">
           <FaSearch />
         </button>
       </Form>
