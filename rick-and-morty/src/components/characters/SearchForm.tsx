@@ -25,14 +25,13 @@ export const SearchForm: FC<SearchFormProps> = ({ handleSearch }) => {
   };
 
   const schema = yup.object({
-    wantedCharacter: yup.string().required(),
+    wantedCharacter: yup.string(),
   });
 
   const handleSubmit = (values: any, { resetForm }: { resetForm: any }) => {
     name = values.wantedCharacter;
     refetch();
     resetForm();
-    handleSearch([]);
   };
 
   useEffect(() => {
