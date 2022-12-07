@@ -15,23 +15,10 @@ export const AllCharacters: FC<AllCharactersProps> = ({ singleChar }) => {
       {singleChar?.length > 0
         ? singleChar?.map((el: any) => {
             return (
-              <div className="characters__card-box__card" key={el.id}>
-                <img
-                  className="characters__card-box__card__image"
-                  src={el?.image}
-                  alt="character"
-                />
-                <h4 className="characters__card-box__card__name">
-                  <Link to={`/CharacterDetails/${el.id}`}>{el?.name}</Link>
-                </h4>
-              </div>
-            );
-          })
-        : char?.data.results?.map((el: any) => {
-            return (
-              <div className="characters__card-box__card" key={el.id}>
+              <div className="card" key={el.id}>
+                <img className="card__image" src={el?.image} alt="character" />
                 <p
-                  className="characters__card-box__card__status"
+                  className="card__status"
                   style={{
                     backgroundColor:
                       el.status === "Alive"
@@ -43,12 +30,30 @@ export const AllCharacters: FC<AllCharactersProps> = ({ singleChar }) => {
                 >
                   {el?.status}
                 </p>
-                <img
-                  className="characters__card-box__card__image"
-                  src={el?.image}
-                  alt="character"
-                />
-                <h4 className="characters__card-box__card__name">
+                <h4 className="card__name">
+                  <Link to={`/CharacterDetails/${el.id}`}>{el?.name}</Link>
+                </h4>
+              </div>
+            );
+          })
+        : char?.data.results?.map((el: any) => {
+            return (
+              <div className="card" key={el.id}>
+                <p
+                  className="card__status"
+                  style={{
+                    backgroundColor:
+                      el.status === "Alive"
+                        ? "#2d8646"
+                        : el.status === "Dead"
+                        ? "#dc3546"
+                        : "#6c757d",
+                  }}
+                >
+                  {el?.status}
+                </p>
+                <img className="card__image" src={el?.image} alt="character" />
+                <h4 className="card__name">
                   <Link to={`/CharacterDetails/${el.id}`}>{el?.name}</Link>
                 </h4>
               </div>
