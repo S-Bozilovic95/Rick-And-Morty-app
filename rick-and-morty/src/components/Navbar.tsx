@@ -59,10 +59,7 @@ export const Navbar: React.FC = () => {
         }
       >
         <li className="navbar__responsive-menu__item">
-          <Link
-            to={"/Characters"}
-            className="navbar__responsive-menu__item__link"
-          >
+          <Link to={"/"} className="navbar__responsive-menu__item__link">
             Characters
           </Link>
         </li>

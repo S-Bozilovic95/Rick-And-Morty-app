@@ -30,6 +30,19 @@ export const AllCharacters: FC<AllCharactersProps> = ({ singleChar }) => {
         : char?.data.results?.map((el: any) => {
             return (
               <div className="characters__card-box__card" key={el.id}>
+                <p
+                  className="characters__card-box__card__status"
+                  style={{
+                    backgroundColor:
+                      el.status === "Alive"
+                        ? "#2d8646"
+                        : el.status === "Dead"
+                        ? "#dc3546"
+                        : "#6c757d",
+                  }}
+                >
+                  {el?.status}
+                </p>
                 <img
                   className="characters__card-box__card__image"
                   src={el?.image}
