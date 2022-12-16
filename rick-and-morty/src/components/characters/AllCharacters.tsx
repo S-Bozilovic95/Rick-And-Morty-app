@@ -1,19 +1,21 @@
 import { FC } from "react";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { getAllCharacters } from "../../api/characters";
+// import { getAllCharacters } from "../../api/characters";
 
 type AllCharactersProps = {
   singleChar: any;
+  allChar: any;
 };
 
-export const AllCharacters: FC<AllCharactersProps> = ({ singleChar }) => {
-  const { data: char } = useQuery("characters", () => getAllCharacters());
-
+export const AllCharacters: FC<AllCharactersProps> = ({
+  singleChar,
+  allChar,
+}) => {
   return (
     <div className="characters__card-box">
-      {singleChar?.length > 0
-        ? singleChar?.map((el: any) => {
+      {singleChar?.data.results?.length > 0
+        ? singleChar?.data.results?.map((el: any) => {
             return (
               <div className="card" key={el.id}>
                 <img className="card__image" src={el?.image} alt="character" />
@@ -36,7 +38,7 @@ export const AllCharacters: FC<AllCharactersProps> = ({ singleChar }) => {
               </div>
             );
           })
-        : char?.data.results?.map((el: any) => {
+        : allChar?.data.results?.map((el: any) => {
             return (
               <div className="card" key={el.id}>
                 <p

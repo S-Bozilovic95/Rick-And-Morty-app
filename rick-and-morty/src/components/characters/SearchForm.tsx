@@ -35,7 +35,7 @@ export const SearchForm: FC<SearchFormProps> = ({ handleSearch }) => {
   };
 
   useEffect(() => {
-    handleSearch(wantedChar?.data.results);
+    handleSearch(wantedChar);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wantedChar]);
 
