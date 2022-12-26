@@ -10,8 +10,10 @@ export const Characters: FC = () => {
   const [singleChar, setSingleChar] = useState();
   const [allChar, setAllChar] = useState<void | AxiosResponse>();
 
-  const { data: allCharData } = useQuery("characters", () =>
-    getAllCharacters()
+  const { data: allCharData } = useQuery(
+    ["characters", allChar],
+    () => getAllCharacters(),
+    { enabled: false }
   );
 
   const handleSearch = (value: any) => {
@@ -28,7 +30,7 @@ export const Characters: FC = () => {
       <h3 className="title">Characters</h3>
       <SearchForm handleSearch={handleSearch} />
       <AllCharacters allChar={allChar} singleChar={singleChar} />
-      <Pagination allChar={allChar} singleChar={singleChar} />
+      <Pagination setAllChar={setAllChar} searchType="character" />
     </section>
   );
 };

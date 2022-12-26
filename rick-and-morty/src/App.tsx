@@ -1,6 +1,6 @@
 import "./App.scss";
 import { QueryClientProvider, QueryClient } from "react-query";
-// import { ReactQueryDevtools } from "react-query/devtools";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Locations } from "./components/locations/Locations";
@@ -36,7 +36,7 @@ function App() {
           </Router>
         </div>
       </ContextRmProvider>
-      {/* <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );
 }
