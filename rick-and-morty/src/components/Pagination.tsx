@@ -27,6 +27,8 @@ export const Pagination: FC<PaginationProps> = ({ setAllChar, searchType }) => {
       setActivePage(activePage + 1);
     } else if (activePage > 1 && value === "decrease") {
       setActivePage(activePage - 1);
+    } else {
+      setActivePage(value);
     }
   };
 
@@ -36,24 +38,62 @@ export const Pagination: FC<PaginationProps> = ({ setAllChar, searchType }) => {
   }, [selectedPageData]);
 
   return (
-    <div>
+    <div className="button-box">
       <button
+        className="button-box__navigation-btn"
         type="button"
         disabled={activePage === 1}
         onClick={() => handlePagination("decrease")}
       >
         prev
       </button>
-      <span>{activePage}</span>
-
       <button
+        className="button-box__number-btn"
+        type="button"
+        onClick={() => handlePagination(1)}
+      >
+        1
+      </button>
+      ...
+      <button
+        className="button-box__number-btn"
+        type="button"
+        onClick={() => handlePagination(activePage <= 1 ? 1 : activePage - 1)}
+      >
+        {activePage <= 1 ? 1 : activePage - 1}
+      </button>
+      <span>{activePage}</span>
+      <button
+        className="button-box__number-btn"
+        type="button"
+        onClick={() =>
+          handlePagination(
+            activePage >= selectedPageData?.data.info.pages
+              ? selectedPageData?.data.info.pages
+              : activePage + 1
+          )
+        }
+      >
+        {activePage >= selectedPageData?.data.info.pages
+          ? selectedPageData?.data.info.pages
+          : activePage + 1}
+      </button>
+      ...
+      <button
+        className="button-box__number-btn"
+        type="button"
+        onClick={() => handlePagination(selectedPageData?.data.info.pages)}
+      >
+        {selectedPageData?.data.info.pages}
+      </button>
+      <button
+        className="button-box__navigation-btn"
         type="button"
         disabled={activePage === selectedPageData?.data.info.pages}
         onClick={() => handlePagination("increase")}
       >
         next
       </button>
-      <div>{selectedPageData?.data.info.pages}</div>
     </div>
   );
 };

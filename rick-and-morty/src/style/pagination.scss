@@ -1,0 +1,41 @@
+.button-box {
+  padding: 30px 10px;
+
+  &__navigation-btn {
+    padding: 8px 20px;
+    background-color: $background;
+    border: none;
+    color: $dark;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: ease-out 0.2s;
+    margin: 0px 10px;
+
+    &:hover {
+      transition: ease-in 0.2s;
+      background-color: $yellow;
+      color: $dark;
+      cursor: pointer;
+    }
+  }
+
+  &__number-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: $dark;
+    background-color: $background;
+    border: none;
+    border-radius: 5px;
+    margin: 0px 5px;
+
+    &:hover {
+      transition: ease-in 0.2s;
+      background-color: $yellow;
+      color: $dark;
+      cursor: pointer;
+    }
+  }
+}
