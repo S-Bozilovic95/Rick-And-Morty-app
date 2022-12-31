@@ -7,17 +7,19 @@ import { getAllCharacters } from "../../api/characters";
 import { AxiosResponse } from "axios";
 
 export const Characters: FC = () => {
-  const [singleChar, setSingleChar] = useState();
   const [allChar, setAllChar] = useState<void | AxiosResponse>();
+  const [selectedName, setSelectedName] = useState<string>("");
 
-  const { data: allCharData } = useQuery(
-    ["characters", allChar],
-    () => getAllCharacters(),
-    { enabled: false }
+  const { data: allCharData } = useQuery("characters", () =>
+    getAllCharacters()
   );
 
-  const handleSearch = (value: any) => {
-    setSingleChar(value);
+  const handleCharacterData = (value: any) => {
+    setAllChar(value);
+  };
+
+  const handleName = (value: string) => {
+    setSelectedName(value);
   };
 
   useEffect(() => {
@@ -28,9 +30,16 @@ export const Characters: FC = () => {
   return (
     <section className="characters container">
       <h3 className="title">Characters</h3>
-      <SearchForm handleSearch={handleSearch} />
-      <AllCharacters allChar={allChar} singleChar={singleChar} />
-      <Pagination setAllChar={setAllChar} searchType="character" />
+      <SearchForm
+        handleCharacterData={handleCharacterData}
+        handleName={handleName}
+      />
+      <AllCharacters allChar={allChar} />
+      <Pagination
+        handleCharacterData={handleCharacterData}
+        selectedName={selectedName}
+        searchType="character"
+      />
     </section>
   );
 };

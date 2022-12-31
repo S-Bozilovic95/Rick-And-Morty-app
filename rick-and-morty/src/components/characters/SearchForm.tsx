@@ -6,15 +6,19 @@ import { getFilteredCharacters } from "../../api/characters";
 import { FaSearch } from "react-icons/fa";
 
 type SearchFormProps = {
-  handleSearch: (value: any) => void;
+  handleCharacterData: (value: any) => void;
+  handleName: (value: string) => void;
 };
 
-export const SearchForm: FC<SearchFormProps> = ({ handleSearch }) => {
+export const SearchForm: FC<SearchFormProps> = ({
+  handleCharacterData,
+  handleName,
+}) => {
   let name = "";
 
   const { data: wantedChar, refetch } = useQuery(
     "wantedCharacter",
-    () => getFilteredCharacters(`name=${name}&status=alive`),
+    () => getFilteredCharacters(`name=${name}`),
     {
       enabled: false,
     }
@@ -30,12 +34,13 @@ export const SearchForm: FC<SearchFormProps> = ({ handleSearch }) => {
 
   const handleSubmit = (values: any, { resetForm }: { resetForm: any }) => {
     name = values.wantedCharacter;
+    handleName(name);
     refetch();
     resetForm();
   };
 
   useEffect(() => {
-    handleSearch(wantedChar);
+    handleCharacterData(wantedChar);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wantedChar]);
 

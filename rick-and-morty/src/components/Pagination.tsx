@@ -2,24 +2,32 @@ import { AxiosResponse } from "axios";
 import { FC, useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { getCurrentPage } from "../api/pagination";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 type PaginationProps = {
   searchType: string;
-  setAllChar: React.Dispatch<
+  handleCharacterData: React.Dispatch<
     React.SetStateAction<void | AxiosResponse<any, any> | undefined>
   >;
+  selectedName: string;
 };
 
-export const Pagination: FC<PaginationProps> = ({ setAllChar, searchType }) => {
+export const Pagination: FC<PaginationProps> = ({
+  handleCharacterData,
+  searchType,
+  selectedName,
+}) => {
   const [activePage, setActivePage] = useState(1);
 
   const { data: selectedPageData } = useQuery(
-    ["selectedPage", activePage],
-    () => getCurrentPage(activePage, searchType),
+    ["selectedPage", activePage, selectedName],
+    () => getCurrentPage(activePage, searchType, selectedName),
     { keepPreviousData: true }
   );
 
   const handlePagination = (value: any) => {
+    console.log(selectedPageData?.data.info.pages);
+
     if (
       activePage < selectedPageData?.data.info.pages &&
       value === "increase"
@@ -33,7 +41,8 @@ export const Pagination: FC<PaginationProps> = ({ setAllChar, searchType }) => {
   };
 
   useEffect(() => {
-    setAllChar(selectedPageData);
+    handleCharacterData(selectedPageData);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPageData]);
 
@@ -45,7 +54,7 @@ export const Pagination: FC<PaginationProps> = ({ setAllChar, searchType }) => {
         disabled={activePage === 1}
         onClick={() => handlePagination("decrease")}
       >
-        prev
+        <FaChevronLeft />
       </button>
       <button
         className="button-box__number-btn"
@@ -62,7 +71,7 @@ export const Pagination: FC<PaginationProps> = ({ setAllChar, searchType }) => {
       >
         {activePage <= 1 ? 1 : activePage - 1}
       </button>
-      <span>{activePage}</span>
+      <span className="button-box__current-page">{activePage}</span>
       <button
         className="button-box__number-btn"
         type="button"
@@ -92,7 +101,7 @@ export const Pagination: FC<PaginationProps> = ({ setAllChar, searchType }) => {
         disabled={activePage === selectedPageData?.data.info.pages}
         onClick={() => handlePagination("increase")}
       >
-        next
+        <FaChevronRight />
       </button>
     </div>
   );
