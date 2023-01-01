@@ -56,45 +56,9 @@ export const Pagination: FC<PaginationProps> = ({
       >
         <FaChevronLeft />
       </button>
-      <button
-        className="button-box__number-btn"
-        type="button"
-        onClick={() => handlePagination(1)}
-      >
-        1
-      </button>
-      ...
-      <button
-        className="button-box__number-btn"
-        type="button"
-        onClick={() => handlePagination(activePage <= 1 ? 1 : activePage - 1)}
-      >
-        {activePage <= 1 ? 1 : activePage - 1}
-      </button>
+
       <span className="button-box__current-page">{activePage}</span>
-      <button
-        className="button-box__number-btn"
-        type="button"
-        onClick={() =>
-          handlePagination(
-            activePage >= selectedPageData?.data.info.pages
-              ? selectedPageData?.data.info.pages
-              : activePage + 1
-          )
-        }
-      >
-        {activePage >= selectedPageData?.data.info.pages
-          ? selectedPageData?.data.info.pages
-          : activePage + 1}
-      </button>
-      ...
-      <button
-        className="button-box__number-btn"
-        type="button"
-        onClick={() => handlePagination(selectedPageData?.data.info.pages)}
-      >
-        {selectedPageData?.data.info.pages}
-      </button>
+
       <button
         className="button-box__navigation-btn"
         type="button"
