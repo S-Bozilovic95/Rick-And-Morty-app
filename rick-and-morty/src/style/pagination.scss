@@ -1,6 +1,11 @@
 .button-box {
   padding: 30px 10px;
 
+  &__swiper-box {
+    width: 300px !important;
+    cursor: pointer;
+  }
+
   &__navigation-btn {
     padding: 8px 20px;
     background-color: $background;
@@ -42,7 +47,6 @@
     background-color: $background;
     border: none;
     border-radius: 5px;
-    margin: 0px 5px;
 
     &:hover {
       transition: ease-in 0.2s;

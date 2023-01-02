@@ -24,7 +24,6 @@ export const Characters: FC = () => {
 
   useEffect(() => {
     setAllChar(allCharData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allCharData]);
 
   return (
