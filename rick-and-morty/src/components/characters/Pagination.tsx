@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { AxiosResponse } from "axios";
-import { FC, useState, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useQuery } from "react-query";
 import { getCurrentPage } from "../../api/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
