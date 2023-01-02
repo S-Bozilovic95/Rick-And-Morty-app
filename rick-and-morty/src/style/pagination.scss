@@ -4,6 +4,16 @@
   &__swiper-box {
     width: 300px !important;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    // border: 1px solid red;
+
+    .swiper-slide {
+      display: inline-block;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+    }
   }
 
   &__navigation-btn {

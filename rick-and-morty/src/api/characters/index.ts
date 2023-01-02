@@ -1,3 +1,4 @@
+import { Choices } from "../../components/characters/Characters";
 import { request } from "../request";
 
 export const getAllCharacters = () => {
@@ -21,9 +22,13 @@ export const getMultipleCharacters = (param: number[]) => {
   });
 };
 
-export const getFilteredCharacters = (param: any) => {
+export const getFilteredCharacters = (
+  filter: Choices,
+  name: string,
+  page: number
+) => {
   return request({
-    url: `/character/?${param}`,
+    url: `/character/?name=${name}&status=${filter.status}&gender=${filter.gender}&species=${filter.species}&page=${page}`,
     method: "GET",
   });
 };

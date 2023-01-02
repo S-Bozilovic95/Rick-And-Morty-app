@@ -4,21 +4,24 @@ import * as yup from "yup";
 import { useQuery } from "react-query";
 import { getFilteredCharacters } from "../../api/characters";
 import { FaSearch } from "react-icons/fa";
+import { Choices } from "./Characters";
 
 type SearchFormProps = {
   handleCharacterData: (value: any) => void;
   handleName: (value: string) => void;
+  choices: Choices;
 };
 
 export const SearchForm: FC<SearchFormProps> = ({
   handleCharacterData,
   handleName,
+  choices,
 }) => {
   let name = "";
 
   const { data: wantedChar, refetch } = useQuery(
     "wantedCharacter",
-    () => getFilteredCharacters(`name=${name}`),
+    () => getFilteredCharacters(choices, name, 1),
     {
       enabled: false,
     }

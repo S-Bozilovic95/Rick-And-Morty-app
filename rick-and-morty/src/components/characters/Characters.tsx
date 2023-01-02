@@ -1,19 +1,32 @@
 import { FC, useEffect, useState } from "react";
 import { AllCharacters } from "./AllCharacters";
 import { SearchForm } from "./SearchForm";
-import { Pagination } from "../Pagination";
+import { Pagination } from "./Pagination";
 import { useQuery } from "react-query";
 import { getAllCharacters } from "../../api/characters";
 import { AxiosResponse } from "axios";
+import { CharactersFilter } from "./CharactersFilter";
+
+export type Choices = {
+  status: string;
+  gender: string;
+  species: string;
+};
 
 export const Characters: FC = () => {
   const [allChar, setAllChar] = useState<void | AxiosResponse>();
   const [selectedName, setSelectedName] = useState<string>("");
-
   const { data: allCharData } = useQuery("characters", () =>
     getAllCharacters()
   );
+  const [activePage, setActivePage] = useState(1);
+  const [choices, setChoices] = useState<Choices>({
+    status: "",
+    gender: "",
+    species: "",
+  });
 
+  // functions
   const handleCharacterData = (value: any) => {
     setAllChar(value);
   };
@@ -22,6 +35,23 @@ export const Characters: FC = () => {
     setSelectedName(value);
   };
 
+  const handlePage = (value: any) => {
+    setActivePage(value);
+  };
+
+  const handleFilter = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    const { value, name } = event.target as HTMLButtonElement;
+
+    if (choices[name as keyof Choices] === value) {
+      setChoices({ ...choices, [name]: "" });
+    } else {
+      setChoices({ ...choices, [name]: value });
+    }
+  };
+
+  // hooks
   useEffect(() => {
     setAllChar(allCharData);
   }, [allCharData]);
@@ -32,12 +62,23 @@ export const Characters: FC = () => {
       <SearchForm
         handleCharacterData={handleCharacterData}
         handleName={handleName}
+        choices={choices}
+      />
+      <CharactersFilter
+        handleCharacterData={handleCharacterData}
+        selectedName={selectedName}
+        handleFilter={handleFilter}
+        choices={choices}
+        activePage={activePage}
       />
       <AllCharacters allChar={allChar} />
       <Pagination
+        activePage={activePage}
+        handlePage={handlePage}
         handleCharacterData={handleCharacterData}
         selectedName={selectedName}
         searchType="character"
+        choices={choices}
       />
     </section>
   );
