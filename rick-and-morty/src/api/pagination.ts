@@ -8,6 +8,7 @@ export const getCurrentPage = (
   filter: Choices
 ) => {
   let url = `/${searchType}/?page=${pageNum}`;
+
   if (name) {
     url += `&name=${name}`;
   }

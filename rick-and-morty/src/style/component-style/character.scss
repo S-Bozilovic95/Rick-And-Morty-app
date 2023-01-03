@@ -4,11 +4,23 @@
   justify-content: center;
   align-items: center;
 
-  &__card-box {
+  &__main-box {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: flex-start;
     align-items: flex-start;
+
+    &__filter-box {
+      flex: 0 0 20%;
+    }
+
+    &__card-box {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      overflow-y: scroll;
+      height: 65vh;
+    }
   }
 
   &__details-box {

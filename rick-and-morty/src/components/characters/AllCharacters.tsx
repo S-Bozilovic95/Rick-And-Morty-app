@@ -9,7 +9,7 @@ type AllCharactersProps = {
 
 export const AllCharacters: FC<AllCharactersProps> = ({ allChar }) => {
   return (
-    <div className="characters__card-box">
+    <div className="characters__main-box__card-box">
       {allChar?.data.results?.map((el: any) => {
         return (
           <div className="card" key={el.id}>

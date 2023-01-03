@@ -16,15 +16,17 @@ export type Choices = {
 export const Characters: FC = () => {
   const [allChar, setAllChar] = useState<void | AxiosResponse>();
   const [selectedName, setSelectedName] = useState<string>("");
+  const [activePage, setActivePage] = useState<any>(1);
+  const [choices, setChoices] = useState<Choices>({
+    status: sessionStorage.getItem("R&M-filter/status") || "",
+    gender: sessionStorage.getItem("R&M-filter/gender") || "",
+    species: sessionStorage.getItem("R&M-filter/species") || "",
+  });
+
+  // query
   const { data: allCharData } = useQuery("characters", () =>
     getAllCharacters()
   );
-  const [activePage, setActivePage] = useState(1);
-  const [choices, setChoices] = useState<Choices>({
-    status: "",
-    gender: "",
-    species: "",
-  });
 
   // functions
   const handleCharacterData = (value: any) => {
@@ -33,10 +35,12 @@ export const Characters: FC = () => {
 
   const handleName = (value: string) => {
     setSelectedName(value);
+    sessionStorage.setItem("R&M-name", value);
   };
 
   const handlePage = (value: any) => {
     setActivePage(value);
+    sessionStorage.setItem("R&M-page-num", value);
   };
 
   const handleFilter = (
@@ -46,8 +50,10 @@ export const Characters: FC = () => {
 
     if (choices[name as keyof Choices] === value) {
       setChoices({ ...choices, [name]: "" });
+      sessionStorage.setItem(`R&M-filter/${name}`, "");
     } else {
       setChoices({ ...choices, [name]: value });
+      sessionStorage.setItem(`R&M-filter/${name}`, value);
     }
   };
 
@@ -64,14 +70,16 @@ export const Characters: FC = () => {
         handleName={handleName}
         choices={choices}
       />
-      <CharactersFilter
-        handleCharacterData={handleCharacterData}
-        selectedName={selectedName}
-        handleFilter={handleFilter}
-        choices={choices}
-        activePage={activePage}
-      />
-      <AllCharacters allChar={allChar} />
+      <div className="characters__main-box">
+        <CharactersFilter
+          handleCharacterData={handleCharacterData}
+          selectedName={selectedName}
+          handleFilter={handleFilter}
+          choices={choices}
+          activePage={activePage}
+        />
+        <AllCharacters allChar={allChar} />
+      </div>
       <Pagination
         activePage={activePage}
         handlePage={handlePage}

@@ -26,7 +26,6 @@ export const Pagination: FC<PaginationProps> = ({
   activePage,
   handlePage,
 }) => {
-  // const [activePage, setActivePage] = useState(1);
   let numbers: number[] = [];
 
   // query
@@ -50,7 +49,7 @@ export const Pagination: FC<PaginationProps> = ({
   }, [selectedPageData]);
 
   useEffect(() => {
-    handlePage(1);
+    handlePage(sessionStorage.getItem("R&M-page-num"));
   }, [selectedName, choices]);
 
   if (isSuccess) {
@@ -68,7 +67,11 @@ export const Pagination: FC<PaginationProps> = ({
           return (
             <SwiperSlide key={index}>
               <button
-                className="button-box__navigation-btn"
+                className={
+                  el === activePage
+                    ? "active-btn button-box__navigation-btn"
+                    : "button-box__navigation-btn"
+                }
                 type="button"
                 onClick={() => handlePage(el)}
               >
