@@ -52,6 +52,10 @@ body {
   }
 }
 
+.active-btn {
+  background-color: $yellow;
+}
+
 .video-background {
   z-index: -10;
   position: fixed;
@@ -240,12 +244,4 @@ a {
       }
     }
   }
-}
-
-.active-filter {
-  background-color: red;
-}
-
-.active-btn {
-  background-color: $yellow;
 }

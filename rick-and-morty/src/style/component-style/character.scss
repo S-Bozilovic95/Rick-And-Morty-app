@@ -8,18 +8,37 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    flex-wrap: wrap;
 
     &__filter-box {
       flex: 0 0 20%;
+
+      &__options-bar {
+        border: 1px solid red;
+        padding: 20px 50px;
+
+        &__options-box {
+          max-height: 0px;
+          overflow-y: hidden;
+          transition: 0.25s ease-out;
+        }
+      }
+
+      .options-bar-active {
+        background-color: red;
+        .characters__main-box__filter-box__options-bar__options-box {
+          max-height: 500px !important;
+          transition: 0.25s ease-in !important;
+        }
+      }
     }
 
     &__card-box {
+      flex: 0 0 80%;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       align-items: flex-start;
-      overflow-y: scroll;
-      height: 65vh;
     }
   }
 
@@ -29,5 +48,9 @@
     align-items: center;
     flex-direction: column;
     height: 80vh;
+  }
+
+  .active-filter {
+    background-color: red;
   }
 }

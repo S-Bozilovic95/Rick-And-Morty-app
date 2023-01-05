@@ -23,6 +23,7 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
   choices,
   activePage,
 }) => {
+  let activeBar: boolean = false;
   // functions
   const { data: filteredData } = useQuery(
     ["filteredData", choices, selectedName, activePage],
@@ -30,40 +31,54 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
     { keepPreviousData: true }
   );
 
+  const handleActiveBar = () => {
+    activeBar = !activeBar;
+    console.log(activeBar);
+  };
+
   useEffect(() => {
     handleCharacterData(filteredData);
   }, [filteredData, handleCharacterData]);
 
   return (
     <div className="characters__main-box__filter-box">
-      <div>
-        <button
-          value={"dead"}
-          name="status"
-          onClick={(event) => handleFilter(event)}
-          className={choices.status === "dead" ? "active-filter" : ""}
-        >
-          Dead
-        </button>
-        <button
-          value={"alive"}
-          name="status"
-          onClick={(event) => handleFilter(event)}
-          className={choices.status === "alive" ? "active-filter" : ""}
-        >
-          Alive
-        </button>
-        <button
-          value={"unknown"}
-          name="status"
-          onClick={(event) => handleFilter(event)}
-          className={choices.status === "unknown" ? "active-filter" : ""}
-        >
-          Unknown
-        </button>
+      <div
+        className={
+          activeBar
+            ? "characters__main-box__filter-box__options-bar options-bar-active"
+            : "characters__main-box__filter-box__options-bar"
+        }
+        onClick={() => handleActiveBar()}
+      >
+        <div className="characters__main-box__filter-box__options-bar__options-box">
+          <button
+            value={"dead"}
+            name="status"
+            onClick={(event) => handleFilter(event)}
+            className={choices.status === "dead" ? "active-filter" : ""}
+          >
+            Dead
+          </button>
+          <button
+            value={"alive"}
+            name="status"
+            onClick={(event) => handleFilter(event)}
+            className={choices.status === "alive" ? "active-filter" : ""}
+          >
+            Alive
+          </button>
+          <button
+            value={"unknown"}
+            name="status"
+            onClick={(event) => handleFilter(event)}
+            className={choices.status === "unknown" ? "active-filter" : ""}
+          >
+            Unknown
+          </button>
+        </div>
       </div>
 
-      <div>
+      <div className="characters__main-box__filter-box__options-box">
         <button
           value={"male"}
           name="gender"
@@ -98,7 +113,7 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
         </button>
       </div>
 
-      <div>
+      <div className="characters__main-box__filter-box__options-box">
         <button
           value={"human"}
           name="species"
