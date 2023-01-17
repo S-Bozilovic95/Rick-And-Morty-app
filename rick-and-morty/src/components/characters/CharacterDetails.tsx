@@ -1,22 +1,24 @@
 import { FC } from "react";
 import { useQuery } from "react-query";
-import { useParams, useNavigate } from "react-router-dom";
 import { getSingleCharacter } from "../../api/characters";
+import { GrFormClose } from "react-icons/gr";
 
-export const CharacterDetails: FC = () => {
-  const { charID } = useParams();
-  const navigate = useNavigate();
+type CharacterDetailsProps = {
+  details: any;
+  handleDetails: (id: any, active: any) => void;
+};
 
-  const handleBack = () => {
-    navigate("/");
-  };
-
+export const CharacterDetails: FC<CharacterDetailsProps> = ({
+  details,
+  handleDetails,
+}) => {
   const { data: singleChar } = useQuery("charDetails", () =>
-    getSingleCharacter(charID)
+    getSingleCharacter(details)
   );
 
   return (
     <div className="characters__details-box container">
+      <GrFormClose onClick={() => handleDetails("", false)} />
       <h4 className="subtitle">{singleChar?.data.name}</h4>
       <div className="card details-card">
         <p
@@ -55,10 +57,6 @@ export const CharacterDetails: FC = () => {
           </p>
         </div>
       </div>
-
-      <button className="button" onClick={() => handleBack()}>
-        Back
-      </button>
     </div>
   );
 };

@@ -26,6 +26,7 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
   const [activeFilter1, setActiveFilter1] = useState<boolean>();
   const [activeFilter2, setActiveFilter2] = useState<boolean>();
   const [activeFilter3, setActiveFilter3] = useState<boolean>();
+
   // functions
   const { data: filteredData } = useQuery(
     ["filteredData", choices, selectedName, activePage],
@@ -36,11 +37,9 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
   const handleActiveBar = (value: number) => {
     if (value === 1) {
       setActiveFilter1(!activeFilter1);
-    }
-    if (value === 2) {
+    } else if (value === 2) {
       setActiveFilter2(!activeFilter2);
-    }
-    if (value === 3) {
+    } else if (value === 3) {
       setActiveFilter3(!activeFilter3);
     }
   };

@@ -1,13 +1,19 @@
-import { FC } from "react";
-// import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
-// import { getAllCharacters } from "../../api/characters";
+import { FC, useState } from "react";
+import { CharacterDetails } from "./CharacterDetails";
 
 type AllCharactersProps = {
   allChar: any;
 };
 
 export const AllCharacters: FC<AllCharactersProps> = ({ allChar }) => {
+  const [detailsActive, setDetailsActive] = useState<boolean>(false);
+  const [details, setDetails] = useState<any>();
+
+  const handleDetails = (id: any, active: boolean) => {
+    setDetailsActive(active);
+    setDetails(id);
+  };
+
   return (
     <div className="characters__main-box__card-box">
       {allChar?.data.results?.map((el: any) => {
@@ -27,12 +33,18 @@ export const AllCharacters: FC<AllCharactersProps> = ({ allChar }) => {
               {el?.status}
             </p>
             <img className="card__image" src={el?.image} alt="character" />
-            <h4 className="card__name">
-              <Link to={`/CharacterDetails/${el.id}`}>{el?.name}</Link>
+            <h4
+              className="card__name"
+              onClick={() => handleDetails(el.id, true)}
+            >
+              {el?.name}
             </h4>
           </div>
         );
       })}
+      {detailsActive && (
+        <CharacterDetails details={details} handleDetails={handleDetails} />
+      )}
     </div>
   );
 };
