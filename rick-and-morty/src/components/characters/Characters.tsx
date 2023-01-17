@@ -18,9 +18,9 @@ export const Characters: FC = () => {
   const [selectedName, setSelectedName] = useState<string>("");
   const [activePage, setActivePage] = useState<any>(1);
   const [choices, setChoices] = useState<Choices>({
-    status: sessionStorage.getItem("R&M-filter/status") || "",
-    gender: sessionStorage.getItem("R&M-filter/gender") || "",
-    species: sessionStorage.getItem("R&M-filter/species") || "",
+    status: "",
+    gender: "",
+    species: "",
   });
 
   // query
@@ -35,12 +35,10 @@ export const Characters: FC = () => {
 
   const handleName = (value: string) => {
     setSelectedName(value);
-    sessionStorage.setItem("R&M-name", value);
   };
 
   const handlePage = (value: any) => {
     setActivePage(value);
-    sessionStorage.setItem("R&M-page-num", value);
   };
 
   const handleFilter = (
@@ -50,10 +48,8 @@ export const Characters: FC = () => {
 
     if (choices[name as keyof Choices] === value) {
       setChoices({ ...choices, [name]: "" });
-      sessionStorage.setItem(`R&M-filter/${name}`, "");
     } else {
       setChoices({ ...choices, [name]: value });
-      sessionStorage.setItem(`R&M-filter/${name}`, value);
     }
   };
 
@@ -79,15 +75,15 @@ export const Characters: FC = () => {
           activePage={activePage}
         />
         <AllCharacters allChar={allChar} />
+        <Pagination
+          activePage={activePage}
+          handlePage={handlePage}
+          handleCharacterData={handleCharacterData}
+          selectedName={selectedName}
+          searchType="character"
+          choices={choices}
+        />
       </div>
-      <Pagination
-        activePage={activePage}
-        handlePage={handlePage}
-        handleCharacterData={handleCharacterData}
-        selectedName={selectedName}
-        searchType="character"
-        choices={choices}
-      />
     </section>
   );
 };

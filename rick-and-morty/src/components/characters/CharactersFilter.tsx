@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getFilteredCharacters } from "../../api/characters";
 import { Choices } from "./Characters";
@@ -23,7 +23,9 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
   choices,
   activePage,
 }) => {
-  let activeBar: boolean = false;
+  const [activeFilter1, setActiveFilter1] = useState<boolean>();
+  const [activeFilter2, setActiveFilter2] = useState<boolean>();
+  const [activeFilter3, setActiveFilter3] = useState<boolean>();
   // functions
   const { data: filteredData } = useQuery(
     ["filteredData", choices, selectedName, activePage],
@@ -31,9 +33,16 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
     { keepPreviousData: true }
   );
 
-  const handleActiveBar = () => {
-    activeBar = !activeBar;
-    console.log(activeBar);
+  const handleActiveBar = (value: number) => {
+    if (value === 1) {
+      setActiveFilter1(!activeFilter1);
+    }
+    if (value === 2) {
+      setActiveFilter2(!activeFilter2);
+    }
+    if (value === 3) {
+      setActiveFilter3(!activeFilter3);
+    }
   };
 
   useEffect(() => {
@@ -43,42 +52,57 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
   return (
     <div className="characters__main-box__filter-box">
       <div
-        className={
-          activeBar
-            ? "characters__main-box__filter-box__options-bar options-bar-active"
-            : "characters__main-box__filter-box__options-bar"
-        }
-        onClick={() => handleActiveBar()}
+        className="characters__main-box__filter-box__options-bar"
+        onClick={() => handleActiveBar(1)}
       >
-        <div className="characters__main-box__filter-box__options-bar__options-box">
-          <button
-            value={"dead"}
-            name="status"
-            onClick={(event) => handleFilter(event)}
-            className={choices.status === "dead" ? "active-filter" : ""}
-          >
-            Dead
-          </button>
-          <button
-            value={"alive"}
-            name="status"
-            onClick={(event) => handleFilter(event)}
-            className={choices.status === "alive" ? "active-filter" : ""}
-          >
-            Alive
-          </button>
-          <button
-            value={"unknown"}
-            name="status"
-            onClick={(event) => handleFilter(event)}
-            className={choices.status === "unknown" ? "active-filter" : ""}
-          >
-            Unknown
-          </button>
-        </div>
+        Status
+      </div>
+      <div
+        className={
+          activeFilter1
+            ? "characters__main-box__filter-box__options-box options-box-active"
+            : "characters__main-box__filter-box__options-box"
+        }
+      >
+        <button
+          value={"dead"}
+          name="status"
+          onClick={(event) => handleFilter(event)}
+          className={choices.status === "dead" ? "active-filter" : ""}
+        >
+          Dead
+        </button>
+        <button
+          value={"alive"}
+          name="status"
+          onClick={(event) => handleFilter(event)}
+          className={choices.status === "alive" ? "active-filter" : ""}
+        >
+          Alive
+        </button>
+        <button
+          value={"unknown"}
+          name="status"
+          onClick={(event) => handleFilter(event)}
+          className={choices.status === "unknown" ? "active-filter" : ""}
+        >
+          Unknown
+        </button>
       </div>
 
-      <div className="characters__main-box__filter-box__options-box">
+      <div
+        className="characters__main-box__filter-box__options-bar"
+        onClick={() => handleActiveBar(2)}
+      >
+        Gender
+      </div>
+      <div
+        className={
+          activeFilter2
+            ? "characters__main-box__filter-box__options-box options-box-active"
+            : "characters__main-box__filter-box__options-box"
+        }
+      >
         <button
           value={"male"}
           name="gender"
@@ -113,7 +137,19 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
         </button>
       </div>
 
-      <div className="characters__main-box__filter-box__options-box">
+      <div
+        className="characters__main-box__filter-box__options-bar"
+        onClick={() => handleActiveBar(3)}
+      >
+        Species
+      </div>
+      <div
+        className={
+          activeFilter3
+            ? "characters__main-box__filter-box__options-box options-box-active"
+            : "characters__main-box__filter-box__options-box"
+        }
+      >
         <button
           value={"human"}
           name="species"

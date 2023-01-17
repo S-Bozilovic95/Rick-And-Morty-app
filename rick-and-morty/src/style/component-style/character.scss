@@ -6,7 +6,7 @@
 
   &__main-box {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
 
@@ -16,20 +16,13 @@
       &__options-bar {
         border: 1px solid red;
         padding: 20px 50px;
-
-        &__options-box {
-          max-height: 0px;
-          overflow-y: hidden;
-          transition: 0.25s ease-out;
-        }
+        background-color: wheat;
       }
 
-      .options-bar-active {
-        background-color: red;
-        .characters__main-box__filter-box__options-bar__options-box {
-          max-height: 500px !important;
-          transition: 0.25s ease-in !important;
-        }
+      &__options-box {
+        max-height: 0px;
+        overflow: hidden;
+        transition: 0.25s ease-out;
       }
     }
 
@@ -48,6 +41,11 @@
     align-items: center;
     flex-direction: column;
     height: 80vh;
+  }
+
+  .options-box-active {
+    max-height: 500px !important;
+    transition: 0.25s ease-in !important;
   }
 
   .active-filter {
