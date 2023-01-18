@@ -12,17 +12,36 @@
 
     &__filter-box {
       flex: 0 0 20%;
+      border-radius: 15px;
 
-      &__options-bar {
-        padding: 20px 50px;
-        background-color: wheat;
-        margin-bottom: 10px;
-      }
+      &__filter {
+        &__options-bar {
+          padding: 10px 30px;
+          font-size: 1.2rem;
+          background-color: $background;
+          cursor: pointer;
+          border: 1px solid $dark;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
 
-      &__options-box {
-        max-height: 0px;
-        overflow: hidden;
-        transition: 0.25s ease-out;
+          i {
+            color: $dark;
+            font-size: 2rem;
+            transition: 0.25s ease-out;
+            transform: rotate(0deg) translateY(0px);
+          }
+        }
+
+        &__options-box {
+          max-height: 0px;
+          overflow: hidden;
+          transition: 0.25s ease-out;
+          padding: 0px 10px;
+          background-color: $background;
+          border: 1px solid $dark;
+          border-top: none;
+        }
       }
     }
 
@@ -39,19 +58,56 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.548);
+    background-color: rgba(0, 0, 0, 0.719);
     width: 100% !important;
     z-index: 20;
+
+    &__char-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      border-radius: 30px;
+      position: relative;
+
+      &__icon {
+        position: absolute;
+        top: 10px;
+        right: -10px;
+        font-size: 40px;
+        cursor: pointer;
+        transition: 0.25s ease-out;
+        filter: invert(100%) sepia(4%) saturate(285%) hue-rotate(190deg)
+          brightness(113%) contrast(95%);
+
+        &:hover {
+          filter: invert(77%) sepia(81%) saturate(951%) hue-rotate(355deg)
+            brightness(100%) contrast(80%);
+          transition: 0.25s ease-in;
+        }
+      }
+    }
   }
 
   .options-box-active {
-    max-height: 500px !important;
-    transition: 0.25s ease-in !important;
+    .characters__main-box__filter-box__filter__options-bar {
+      background-color: $gray;
+      i {
+        transition: 0.25s ease-in;
+        transform: rotate(180deg) translateY(5px);
+      }
+    }
+
+    .characters__main-box__filter-box__filter__options-box {
+      max-height: 500px !important;
+      transition: 0.25s ease-in !important;
+      padding: 30px 10px;
+    }
   }
 
   .active-filter {

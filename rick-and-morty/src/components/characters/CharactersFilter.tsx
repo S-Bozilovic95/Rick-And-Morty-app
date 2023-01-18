@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getFilteredCharacters } from "../../api/characters";
 import { Choices } from "./Characters";
+import { FiChevronDown } from "react-icons/fi";
 
 type CharactersFilterProps = {
   handleCharacterData: React.Dispatch<
@@ -51,49 +52,55 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
   return (
     <div className="characters__main-box__filter-box">
       <div
-        className="characters__main-box__filter-box__options-bar"
-        onClick={() => handleActiveBar(1)}
-      >
-        Status
-      </div>
-      <div
         className={
           activeFilter1
-            ? "characters__main-box__filter-box__options-box options-box-active"
-            : "characters__main-box__filter-box__options-box"
+            ? "characters__main-box__filter-box__filter options-box-active"
+            : "characters__main-box__filter-box__filter"
         }
+        onClick={() => handleActiveBar(1)}
       >
-        <button
-          value={"dead"}
-          name="status"
-          onClick={(event) => handleFilter(event)}
-          className={choices.status === "dead" ? "active-filter" : ""}
-        >
-          Dead
-        </button>
-        <button
-          value={"alive"}
-          name="status"
-          onClick={(event) => handleFilter(event)}
-          className={choices.status === "alive" ? "active-filter" : ""}
-        >
-          Alive
-        </button>
-        <button
-          value={"unknown"}
-          name="status"
-          onClick={(event) => handleFilter(event)}
-          className={choices.status === "unknown" ? "active-filter" : ""}
-        >
-          Unknown
-        </button>
+        <div className="characters__main-box__filter-box__filter__options-bar">
+          <span>Status</span>
+          <i>
+            <FiChevronDown />
+          </i>
+        </div>
+        <div className="characters__main-box__filter-box__filter__options-box">
+          <button
+            value={"dead"}
+            name="status"
+            onClick={(event) => handleFilter(event)}
+            className={choices.status === "dead" ? "active-filter" : ""}
+          >
+            Dead
+          </button>
+          <button
+            value={"alive"}
+            name="status"
+            onClick={(event) => handleFilter(event)}
+            className={choices.status === "alive" ? "active-filter" : ""}
+          >
+            Alive
+          </button>
+          <button
+            value={"unknown"}
+            name="status"
+            onClick={(event) => handleFilter(event)}
+            className={choices.status === "unknown" ? "active-filter" : ""}
+          >
+            Unknown
+          </button>
+        </div>
       </div>
 
       <div
         className="characters__main-box__filter-box__options-bar"
         onClick={() => handleActiveBar(2)}
       >
-        Gender
+        <span>Gender</span>
+        <i>
+          <FiChevronDown />
+        </i>
       </div>
       <div
         className={
@@ -140,7 +147,10 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
         className="characters__main-box__filter-box__options-bar"
         onClick={() => handleActiveBar(3)}
       >
-        Species
+        <span>Species</span>
+        <i>
+          <FiChevronDown />
+        </i>
       </div>
       <div
         className={
