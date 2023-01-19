@@ -1,35 +1,37 @@
 .characters {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: auto !important;
+  width: 100%;
 
   &__main-box {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1100px;
+    gap: 50px;
 
     &__filter-box {
-      flex: 0 0 20%;
-      border-radius: 15px;
-
       &__filter {
+        margin-bottom: 10px;
+        border: 2px solid $rickBlue;
+        border-radius: 10px;
+        overflow: hidden;
+
         &__options-bar {
           padding: 10px 30px;
           font-size: 1.2rem;
-          background-color: $background;
+          background-color: rgba(21, 168, 187, 0.445);
+          backdrop-filter: blur(1.5rem);
           cursor: pointer;
-          border: 1px solid $dark;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          color: $white;
+          font-weight: bold;
+          transition: 0, 25s ease-out;
 
           i {
-            color: $dark;
+            color: $white;
             font-size: 2rem;
-            transition: 0.25s ease-out;
-            transform: rotate(0deg) translateY(0px);
+            transition: 0.15s ease-out;
+            transform: rotate(0deg) translateY(5px);
           }
         }
 
@@ -38,19 +40,36 @@
           overflow: hidden;
           transition: 0.25s ease-out;
           padding: 0px 10px;
-          background-color: $background;
-          border: 1px solid $dark;
-          border-top: none;
+          backdrop-filter: blur(1.5rem);
+
+          button {
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: transparent;
+
+            border: none;
+            outline: none;
+            margin: 5px;
+            border-radius: 10px;
+            border: 2px solid $rickBlue;
+            cursor: pointer;
+            transition: 0.15s ease-out;
+
+            &:hover {
+              transition: 0.15s ease-in;
+              background-color: rgba(21, 168, 187, 0.349);
+            }
+          }
         }
       }
     }
 
     &__card-box {
-      flex: 0 0 80%;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      align-items: flex-start;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 10px;
     }
   }
 
@@ -62,18 +81,15 @@
     top: 0;
     left: 0;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.719);
+    background-color: rgba(0, 0, 0, 0.815);
     width: 100% !important;
     z-index: 20;
 
     &__char-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-
       border-radius: 30px;
       position: relative;
+      max-width: 500px;
+      width: 90%;
 
       &__icon {
         position: absolute;
@@ -96,8 +112,10 @@
 
   .options-box-active {
     .characters__main-box__filter-box__filter__options-bar {
-      background-color: $gray;
+      color: $yellow;
+      transition: 0.25s ease-in;
       i {
+        color: $yellow;
         transition: 0.25s ease-in;
         transform: rotate(180deg) translateY(5px);
       }
@@ -111,6 +129,134 @@
   }
 
   .active-filter {
-    background-color: red;
+    transition: 0.15s ease-in;
+    background-color: rgba(21, 168, 187, 0.349);
+    color: $yellow;
+  }
+
+  .form {
+    position: relative;
+    width: 50%;
+    margin: 0px auto 50px;
+
+    &__input {
+      padding: 10px 30px 10px 10px;
+      width: 100%;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      text-overflow: ellipsis;
+      font-size: 1.2rem;
+      color: $white;
+      text-transform: capitalize;
+      border: 2px solid $rickBlue;
+      background-color: rgba(21, 168, 187, 0.349) !important;
+      backdrop-filter: blur(1.5rem);
+      background: transparent;
+      color-scheme: dark;
+
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0 0px 100px rgba(21, 168, 187, 0.349) inset;
+      }
+
+      &::placeholder {
+        color: $white;
+      }
+    }
+
+    &__button {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background: none;
+      border: none;
+      outline: none;
+      font-size: 1.5rem;
+      color: $white;
+      cursor: pointer;
+      transition: ease-out 0.25s;
+
+      &:hover {
+        color: $yellow;
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 85%;
+    }
+  }
+}
+
+// responsive
+@media (max-width: 1520px) {
+  .characters {
+    &__main-box {
+      grid-template-columns: 1fr 680px;
+
+      &__card-box {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .characters {
+    &__main-box {
+      grid-template-columns: 1fr;
+      gap: 20px;
+
+      &__filter-box {
+        &__filter {
+          &__options-bar {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+
+            i {
+              color: $white;
+              font-size: 1.5rem;
+            }
+          }
+
+          &__options-box {
+            button {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+
+      &__card-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &__details-box {
+    }
+
+    .form {
+      position: relative;
+      width: 85%;
+      margin: 0px auto 50px;
+
+      &__input {
+        font-size: 1.1rem;
+      }
+
+      &__button {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .characters {
+    &__main-box {
+      grid-template-columns: 1fr;
+    }
+
+    &__details-box {
+    }
   }
 }

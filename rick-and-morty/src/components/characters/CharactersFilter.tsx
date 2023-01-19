@@ -57,9 +57,11 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
             ? "characters__main-box__filter-box__filter options-box-active"
             : "characters__main-box__filter-box__filter"
         }
-        onClick={() => handleActiveBar(1)}
       >
-        <div className="characters__main-box__filter-box__filter__options-bar">
+        <div
+          className=" characters__main-box__filter-box__filter__options-bar"
+          onClick={() => handleActiveBar(1)}
+        >
           <span>Status</span>
           <i>
             <FiChevronDown />
@@ -94,151 +96,159 @@ export const CharactersFilter: FC<CharactersFilterProps> = ({
       </div>
 
       <div
-        className="characters__main-box__filter-box__options-bar"
-        onClick={() => handleActiveBar(2)}
-      >
-        <span>Gender</span>
-        <i>
-          <FiChevronDown />
-        </i>
-      </div>
-      <div
         className={
           activeFilter2
-            ? "characters__main-box__filter-box__options-box options-box-active"
-            : "characters__main-box__filter-box__options-box"
+            ? "characters__main-box__filter-box__filter options-box-active"
+            : "characters__main-box__filter-box__filter"
         }
       >
-        <button
-          value={"male"}
-          name="gender"
-          onClick={(event) => handleFilter(event)}
-          className={choices.gender === "male" ? "active-filter" : ""}
+        <div
+          className="characters__main-box__filter-box__filter__options-bar"
+          onClick={() => handleActiveBar(2)}
         >
-          Male
-        </button>
-        <button
-          value={"female"}
-          name="gender"
-          onClick={(event) => handleFilter(event)}
-          className={choices.gender === "female" ? "active-filter" : ""}
-        >
-          Female
-        </button>
-        <button
-          value={"genderless"}
-          name="gender"
-          onClick={(event) => handleFilter(event)}
-          className={choices.gender === "genderless" ? "active-filter" : ""}
-        >
-          Genderless
-        </button>
-        <button
-          value={"unknown"}
-          name="gender"
-          onClick={(event) => handleFilter(event)}
-          className={choices.gender === "unknown" ? "active-filter" : ""}
-        >
-          Unknown
-        </button>
+          <span>Gender</span>
+          <i>
+            <FiChevronDown />
+          </i>
+        </div>
+        <div className="characters__main-box__filter-box__filter__options-box">
+          <button
+            value={"male"}
+            name="gender"
+            onClick={(event) => handleFilter(event)}
+            className={choices.gender === "male" ? "active-filter" : ""}
+          >
+            Male
+          </button>
+          <button
+            value={"female"}
+            name="gender"
+            onClick={(event) => handleFilter(event)}
+            className={choices.gender === "female" ? "active-filter" : ""}
+          >
+            Female
+          </button>
+          <button
+            value={"genderless"}
+            name="gender"
+            onClick={(event) => handleFilter(event)}
+            className={choices.gender === "genderless" ? "active-filter" : ""}
+          >
+            Genderless
+          </button>
+          <button
+            value={"unknown"}
+            name="gender"
+            onClick={(event) => handleFilter(event)}
+            className={choices.gender === "unknown" ? "active-filter" : ""}
+          >
+            Unknown
+          </button>
+        </div>
       </div>
 
       <div
-        className="characters__main-box__filter-box__options-bar"
-        onClick={() => handleActiveBar(3)}
-      >
-        <span>Species</span>
-        <i>
-          <FiChevronDown />
-        </i>
-      </div>
-      <div
         className={
           activeFilter3
-            ? "characters__main-box__filter-box__options-box options-box-active"
-            : "characters__main-box__filter-box__options-box"
+            ? "characters__main-box__filter-box__filter options-box-active"
+            : "characters__main-box__filter-box__filter"
         }
       >
-        <button
-          value={"human"}
-          name="species"
-          onClick={(event) => handleFilter(event)}
-          className={choices.species === "human" ? "active-filter" : ""}
+        <div
+          className="characters__main-box__filter-box__filter__options-bar"
+          onClick={() => handleActiveBar(3)}
         >
-          Human
-        </button>
-        <button
-          value={"alien"}
-          name="species"
-          onClick={(event) => handleFilter(event)}
-          className={choices.species === "alien" ? "active-filter" : ""}
-        >
-          Alien
-        </button>
-        <button
-          value={"humanoid"}
-          name="species"
-          onClick={(event) => handleFilter(event)}
-          className={choices.species === "humanoid" ? "active-filter" : ""}
-        >
-          Humanoid
-        </button>
-        <button
-          value={"poopybutthole"}
-          name="species"
-          onClick={(event) => handleFilter(event)}
-          className={choices.species === "poopybutthole" ? "active-filter" : ""}
-        >
-          Poopybutthole
-        </button>
-        <button
-          value={"mythological"}
-          name="species"
-          onClick={(event) => handleFilter(event)}
-          className={choices.species === "mythological" ? "active-filter" : ""}
-        >
-          Mythological
-        </button>
-        <button
-          value={"unknown"}
-          name="species"
-          onClick={(event) => handleFilter(event)}
-          className={choices.species === "unknown" ? "active-filter" : ""}
-        >
-          Unknown
-        </button>
-        <button
-          value={"animal"}
-          name="species"
-          onClick={(event) => handleFilter(event)}
-          className={choices.species === "animal" ? "active-filter" : ""}
-        >
-          Animal
-        </button>
-        <button
-          value={"disease"}
-          name="species"
-          onClick={(event) => handleFilter(event)}
-          className={choices.species === "disease" ? "active-filter" : ""}
-        >
-          Disease
-        </button>
-        <button
-          value={"robot"}
-          name="species"
-          onClick={(event) => handleFilter(event)}
-          className={choices.species === "robot" ? "active-filter" : ""}
-        >
-          Robot
-        </button>
-        <button
-          value={"cronenberg"}
-          name="species"
-          onClick={(event) => handleFilter(event)}
-          className={choices.species === "cronenberg" ? "active-filter" : ""}
-        >
-          Cronenberg
-        </button>
+          <span>Species</span>
+          <i>
+            <FiChevronDown />
+          </i>
+        </div>
+        <div className="characters__main-box__filter-box__filter__options-box">
+          <button
+            value={"human"}
+            name="species"
+            onClick={(event) => handleFilter(event)}
+            className={choices.species === "human" ? "active-filter" : ""}
+          >
+            Human
+          </button>
+          <button
+            value={"alien"}
+            name="species"
+            onClick={(event) => handleFilter(event)}
+            className={choices.species === "alien" ? "active-filter" : ""}
+          >
+            Alien
+          </button>
+          <button
+            value={"humanoid"}
+            name="species"
+            onClick={(event) => handleFilter(event)}
+            className={choices.species === "humanoid" ? "active-filter" : ""}
+          >
+            Humanoid
+          </button>
+          <button
+            value={"poopybutthole"}
+            name="species"
+            onClick={(event) => handleFilter(event)}
+            className={
+              choices.species === "poopybutthole" ? "active-filter" : ""
+            }
+          >
+            Poopybutthole
+          </button>
+          <button
+            value={"mythological"}
+            name="species"
+            onClick={(event) => handleFilter(event)}
+            className={
+              choices.species === "mythological" ? "active-filter" : ""
+            }
+          >
+            Mythological
+          </button>
+          <button
+            value={"unknown"}
+            name="species"
+            onClick={(event) => handleFilter(event)}
+            className={choices.species === "unknown" ? "active-filter" : ""}
+          >
+            Unknown
+          </button>
+          <button
+            value={"animal"}
+            name="species"
+            onClick={(event) => handleFilter(event)}
+            className={choices.species === "animal" ? "active-filter" : ""}
+          >
+            Animal
+          </button>
+          <button
+            value={"disease"}
+            name="species"
+            onClick={(event) => handleFilter(event)}
+            className={choices.species === "disease" ? "active-filter" : ""}
+          >
+            Disease
+          </button>
+          <button
+            value={"robot"}
+            name="species"
+            onClick={(event) => handleFilter(event)}
+            className={choices.species === "robot" ? "active-filter" : ""}
+          >
+            Robot
+          </button>
+          <button
+            value={"cronenberg"}
+            name="species"
+            onClick={(event) => handleFilter(event)}
+            className={choices.species === "cronenberg" ? "active-filter" : ""}
+          >
+            Cronenberg
+          </button>
+        </div>
       </div>
     </div>
   );

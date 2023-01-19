@@ -74,15 +74,17 @@ export const Characters: FC = () => {
           choices={choices}
           activePage={activePage}
         />
-        <AllCharacters allChar={allChar} />
-        <Pagination
-          activePage={activePage}
-          handlePage={handlePage}
-          handleCharacterData={handleCharacterData}
-          selectedName={selectedName}
-          searchType="character"
-          choices={choices}
-        />
+        <div>
+          <AllCharacters allChar={allChar} />
+          <Pagination
+            activePage={activePage}
+            handlePage={handlePage}
+            handleCharacterData={handleCharacterData}
+            selectedName={selectedName}
+            searchType="character"
+            choices={choices}
+          />
+        </div>
       </div>
     </section>
   );
