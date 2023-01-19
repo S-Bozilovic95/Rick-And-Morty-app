@@ -1,13 +1,11 @@
 .characters {
-  margin: auto !important;
-  width: 100%;
-
   &__main-box {
     display: grid;
     grid-template-columns: 1fr 1100px;
     gap: 50px;
 
     &__filter-box {
+      width: 100%;
       &__filter {
         margin-bottom: 10px;
         border: 2px solid $rickBlue;
@@ -180,10 +178,6 @@
         color: $yellow;
       }
     }
-
-    @media (max-width: 768px) {
-      width: 85%;
-    }
   }
 }
 
@@ -203,6 +197,7 @@
 @media (max-width: 1024px) {
   .characters {
     &__main-box {
+      width: 100%;
       grid-template-columns: 1fr;
       gap: 20px;
 
@@ -236,8 +231,8 @@
 
     .form {
       position: relative;
-      width: 85%;
-      margin: 0px auto 50px;
+      width: 100%;
+      // margin: 0px auto 50px;
 
       &__input {
         font-size: 1.1rem;
@@ -254,9 +249,6 @@
   .characters {
     &__main-box {
       grid-template-columns: 1fr;
-    }
-
-    &__details-box {
     }
   }
 }
