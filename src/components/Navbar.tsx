@@ -6,80 +6,38 @@ export const Navbar: React.FC = () => {
   const [active, setActive] = useState<boolean>(false);
 
   return (
-    <nav className="navbar">
-      <div className="navbar__box">
-        <img className="navbar__logo" src={img} alt="logo" />
-        <ul className="navbar__box__regular-menu">
-          <li className="navbar__box__regular-menu__item">
-            <Link to={"/"} className="navbar__box__regular-menu__item__link">
-              Characters
-            </Link>
-          </li>
-          <li className="navbar__box__regular-menu__item">
-            <Link
-              to={"/Episodes"}
-              className="navbar__box__regular-menu__item__link"
-            >
-              Episodes
-            </Link>
-          </li>
-          <li className="navbar__box__regular-menu__item">
-            <Link
-              to={"/Locations"}
-              className="navbar__box__regular-menu__item__link"
-            >
-              Locations
-            </Link>
-          </li>
-        </ul>
-      </div>
+    <div>
+      <nav className={active ? "navbar active-menu" : "navbar"}>
+        <div className="navbar__logo-box">
+          <img className="navbar__logo-box__logo" src={img} alt="logo" />
+          <div
+            className="navbar__logo-box__hamburger"
+            onClick={() => setActive(!active)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div className="navbar__link-box">
+          <Link to={"/"} className="navbar__link-box__link">
+            Characters
+          </Link>
 
-      <div
-        className={
-          active ? "navbar__hamburger activeHamburger" : "navbar__hamburger"
-        }
-        onClick={() => setActive(!active)}
-      >
-        <div className="navbar__hamburger__line one"></div>
-        <div className="navbar__hamburger__line two"></div>
-        <div className="navbar__hamburger__line three"></div>
-      </div>
+          <Link to={"/Episodes"} className="navbar__link-box__link">
+            Episodes
+          </Link>
 
+          <Link to={"/Locations"} className="navbar__link-box__link">
+            Locations
+          </Link>
+        </div>
+      </nav>
       <div
-        className="navbar__overlay"
+        className="overlay"
         style={active ? { display: "block" } : { display: "none" }}
         onClick={() => setActive(false)}
       ></div>
-
-      <ul
-        className={
-          active
-            ? "navbar__responsive-menu activeMenu"
-            : "navbar__responsive-menu"
-        }
-      >
-        <li className="navbar__responsive-menu__item">
-          <Link to={"/"} className="navbar__responsive-menu__item__link">
-            Characters
-          </Link>
-        </li>
-        <li className="navbar__responsive-menu__item">
-          <Link
-            to={"/Episodes"}
-            className="navbar__responsive-menu__item__link"
-          >
-            Episodes
-          </Link>
-        </li>
-        <li className="navbar__responsive-menu__item">
-          <Link
-            to={"/Locations"}
-            className="navbar__responsive-menu__item__link"
-          >
-            Locations
-          </Link>
-        </li>
-      </ul>
-    </nav>
+    </div>
   );
 };
