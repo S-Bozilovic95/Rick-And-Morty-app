@@ -5,10 +5,12 @@
 @import "./style/variables.scss";
 
 // Components
-@import "./style/navbar.scss";
-@import "./style/home.scss";
-@import "./style/pagination.scss";
+@import "./style/component-style/navbar.scss";
+@import "./style/component-style/home.scss";
+@import "./style/component-style/pagination.scss";
 @import "./style/component-style/character.scss";
+@import "./style/component-style/no-result.scss";
+@import "./style/component-style/skeleton.scss";
 
 // default syles
 * {

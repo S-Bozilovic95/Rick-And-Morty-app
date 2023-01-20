@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { NoResult } from "../global-comp/NoResult";
 import { CharacterDetails } from "./CharacterDetails";
 
 type AllCharactersProps = {
@@ -15,35 +16,41 @@ export const AllCharacters: FC<AllCharactersProps> = ({ allChar }) => {
   };
 
   return (
-    <div className="characters__main-box__card-box">
-      {allChar?.data.results?.map((el: any) => {
-        return (
-          <div className="card" key={el.id}>
-            <p
-              className="card__status"
-              style={{
-                backgroundColor:
-                  el.status === "Alive"
-                    ? "#2d8646"
-                    : el.status === "Dead"
-                    ? "#dc3546"
-                    : "#6c757d",
-              }}
-            >
-              {el?.status}
-            </p>
-            <img className="card__image" src={el?.image} alt="character" />
-            <h4
-              className="card__name"
-              onClick={() => handleDetails(el.id, true)}
-            >
-              <a href="#"> {el?.name}</a>
-            </h4>
-          </div>
-        );
-      })}
-      {detailsActive && (
-        <CharacterDetails details={details} handleDetails={handleDetails} />
+    <div>
+      {allChar?.data.results.length > 0 ? (
+        <div className="characters__main-box__card-box">
+          {allChar?.data.results?.map((el: any) => {
+            return (
+              <div className="card" key={el.id}>
+                <p
+                  className="card__status"
+                  style={{
+                    backgroundColor:
+                      el.status === "Alive"
+                        ? "#2d8646"
+                        : el.status === "Dead"
+                        ? "#dc3546"
+                        : "#6c757d",
+                  }}
+                >
+                  {el?.status}
+                </p>
+                <img className="card__image" src={el?.image} alt="character" />
+                <h4
+                  className="card__name"
+                  onClick={() => handleDetails(el.id, true)}
+                >
+                  <a href="#"> {el?.name}</a>
+                </h4>
+              </div>
+            );
+          })}
+          {detailsActive && (
+            <CharacterDetails details={details} handleDetails={handleDetails} />
+          )}
+        </div>
+      ) : (
+        <NoResult />
       )}
     </div>
   );

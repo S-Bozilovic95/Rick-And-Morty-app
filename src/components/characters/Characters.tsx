@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { getAllCharacters } from "../../api/characters";
 import { AxiosResponse } from "axios";
 import { CharactersFilter } from "./CharactersFilter";
+import { Placeholder } from "../global-comp/Placeholder";
 
 export type Choices = {
   status: string;
@@ -22,6 +23,7 @@ export const Characters: FC = () => {
     gender: "",
     species: "",
   });
+  const [loading, setLoading] = useState<boolean>(true);
 
   // query
   const { data: allCharData } = useQuery("characters", () =>
@@ -55,7 +57,8 @@ export const Characters: FC = () => {
 
   // hooks
   useEffect(() => {
-    setAllChar(allCharData);
+    handleCharacterData(allCharData);
+    setLoading(false);
   }, [allCharData]);
 
   return (
@@ -75,7 +78,8 @@ export const Characters: FC = () => {
           activePage={activePage}
         />
         <div>
-          <AllCharacters allChar={allChar} />
+          {loading ? <Placeholder /> : <AllCharacters allChar={allChar} />}
+
           <Pagination
             activePage={activePage}
             handlePage={handlePage}

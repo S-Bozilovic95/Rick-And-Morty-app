@@ -1,0 +1,64 @@
+.home {
+  padding: 0px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__logo {
+    background-image: url(../../assets/img/rick4.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 65vh;
+    filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.226))
+      drop-shadow(0 4px 3px rgba(0, 0, 0, 0.397));
+  }
+
+  &__desc {
+    font-size: 1.3rem;
+    text-align: center;
+    width: 50%;
+    color: $white;
+
+    a {
+      color: $yellow;
+      transition: $transitionOut;
+      font-weight: 600;
+
+      &:hover {
+        transition: $transitionIn;
+        color: $darkRed;
+      }
+    }
+
+    span {
+      color: $rickBlue;
+      font-weight: 700;
+      margin: 0px 5px;
+    }
+  }
+}
+
+// responsive
+@media (max-width: 1024px) {
+  .home {
+    &__logo {
+      margin-top: 50px;
+      height: 50vh;
+      width: 90%;
+      margin-bottom: 10px;
+    }
+
+    &__desc {
+      font-size: 1.1rem;
+      width: 90%;
+
+      span {
+        margin: 0px;
+        font-size: 1rem;
+      }
+    }
+  }
+}

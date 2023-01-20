@@ -2,7 +2,7 @@ import "./App.scss";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Navbar } from "./components/Navbar";
+import { Navbar } from "./components/global-comp/Navbar";
 import { Locations } from "./components/locations/Locations";
 import { Characters } from "./components/characters/Characters";
 import { Episodes } from "./components/episodes/Episodes";
