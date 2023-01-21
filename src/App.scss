@@ -139,16 +139,14 @@ a {
   &__name {
     text-align: center;
     margin: 30px 0px;
+    color: $white;
+    font-size: 1.3rem;
+    transition: ease-out 0.25s;
 
-    a {
-      color: $white;
-      font-size: 1.3rem;
-      transition: ease-out 0.25s;
-
-      &:hover {
-        color: $yellow;
-        transition: ease-in 0.25s;
-      }
+    &:hover {
+      cursor: pointer;
+      color: $yellow;
+      transition: ease-in 0.25s;
     }
   }
 

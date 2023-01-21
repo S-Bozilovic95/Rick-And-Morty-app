@@ -40,7 +40,7 @@ export const AllCharacters: FC<AllCharactersProps> = ({ allChar }) => {
                   className="card__name"
                   onClick={() => handleDetails(el.id, true)}
                 >
-                  <a href="#"> {el?.name}</a>
+                  {el?.name}
                 </h4>
               </div>
             );

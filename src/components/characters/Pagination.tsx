@@ -48,10 +48,6 @@ export const Pagination: FC<PaginationProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPageData]);
 
-  useEffect(() => {
-    handlePage(sessionStorage.getItem("R&M-page-num"));
-  }, [selectedName, choices]);
-
   if (isSuccess) {
     handlePageButtons();
   }

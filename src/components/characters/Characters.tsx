@@ -58,7 +58,10 @@ export const Characters: FC = () => {
   // hooks
   useEffect(() => {
     handleCharacterData(allCharData);
-    setLoading(false);
+
+    if (allCharData) {
+      setLoading(false);
+    }
   }, [allCharData]);
 
   return (
