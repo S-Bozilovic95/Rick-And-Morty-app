@@ -7,7 +7,7 @@ export const getAllLocations = () => {
   });
 };
 
-export const getSingleLocation = (param: string | undefined) => {
+export const getSingleLocation = (param: number) => {
   return request({
     url: `/location/${param}`,
     method: "GET",

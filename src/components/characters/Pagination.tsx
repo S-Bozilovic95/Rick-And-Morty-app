@@ -40,6 +40,7 @@ export const Pagination: FC<PaginationProps> = ({
     for (let i = 1; i <= selectedPageData?.data.info.pages; i++) {
       numbers.push(i);
     }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // hooks
