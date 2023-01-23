@@ -50,7 +50,7 @@ export const AllCharacters: FC<AllCharactersProps> = ({ allChar }) => {
           )}
         </div>
       ) : (
-        <NoResult />
+        <NoResult text="No Results" />
       )}
     </div>
   );

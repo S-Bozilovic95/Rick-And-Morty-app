@@ -11,6 +11,7 @@
 @import "./style/component-style/character.scss";
 @import "./style/component-style/no-result.scss";
 @import "./style/component-style/skeleton.scss";
+@import "./style/component-style/locations.scss";
 
 // default syles
 * {
@@ -69,16 +70,6 @@ a {
   @media (max-width: 1024px) {
     width: 100%;
   }
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.541);
-  width: 100%;
-  height: 100vh;
-  z-index: 5;
 }
 
 .title {
@@ -175,5 +166,99 @@ a {
         font-size: 1.1rem;
       }
     }
+  }
+}
+
+.options {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid $rickBlue;
+  height: fit-content;
+
+  &__bar {
+    padding: 0px 30px;
+    font-size: 1.2rem;
+    background-color: rgba(21, 168, 187, 0.445);
+    backdrop-filter: blur(1.5rem);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $white;
+    font-weight: bold;
+    transition: 0, 25s ease-out;
+
+    i {
+      color: $white;
+      font-size: 2rem;
+      transition: 0.15s ease-out;
+      transform: rotate(0deg) translateY(5px);
+    }
+  }
+
+  &__item-box {
+    max-height: 0px;
+    overflow: hidden;
+    transition: 0.25s ease-out;
+    padding: 0px 20px;
+    backdrop-filter: blur(1.5rem);
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(21, 168, 187, 0.445);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $yellow;
+      border-radius: 15px;
+    }
+
+    &__item {
+      color: $white;
+      font-size: 1.2rem;
+      transition: 0.15s ease-out;
+
+      &:hover {
+        cursor: pointer;
+        color: $yellow;
+        transition: 0.15s ease-out;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    &__bar {
+      padding: 0px 20px;
+      font-size: 1.1rem;
+
+      i {
+        font-size: 1.5rem;
+      }
+    }
+
+    &__item {
+      font-size: 14px;
+    }
+  }
+}
+.options-active {
+  .options__bar {
+    color: $yellow;
+    transition: 0.25s ease-in;
+    i {
+      color: $yellow;
+      transition: 0.25s ease-in;
+      transform: rotate(180deg) translateY(5px);
+    }
+  }
+  .options__item-box {
+    max-height: 500px;
+    padding: 10px 20px;
+    transition: 0.25s ease-in;
   }
 }

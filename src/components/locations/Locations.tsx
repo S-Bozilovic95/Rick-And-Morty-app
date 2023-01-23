@@ -22,21 +22,25 @@ export const Locations: React.FC = () => {
     getAllLocations()
   );
 
+  // hooks
   useEffect(() => {
     handleTotalNumber(locationsData?.data.info.count);
   }, [locationsData]);
 
   return (
-    <div>
-      <Options
-        type={"Location"}
-        totalNumber={totalNumber}
-        handleItemId={handleItemId}
-      />
-      <OverviewTable
-        selectedItemId={selectedItemId}
-        searchItemFn={getSingleLocation}
-      />
-    </div>
+    <section className="locations container">
+      <h3 className="title">Locations</h3>
+      <div className="locations__main-box">
+        <Options
+          type={"Location"}
+          totalNumber={totalNumber}
+          handleItemId={handleItemId}
+        />
+        <OverviewTable
+          selectedItemId={selectedItemId}
+          searchItemFn={getSingleLocation}
+        />
+      </div>
+    </section>
   );
 };

@@ -14,7 +14,7 @@ export const getSingleLocation = (param: number) => {
   });
 };
 
-export const getMultipleLocations = (param: number[]) => {
+export const getMultipleLocations = (param: string) => {
   return request({
     url: `/location/${param}`,
     method: "GET",
