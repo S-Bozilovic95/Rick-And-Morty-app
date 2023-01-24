@@ -1,70 +1,33 @@
-import { AxiosResponse } from "axios";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { useQuery } from "react-query";
 import { getMultipleCharacters } from "../../api/characters";
 import { CharacterDetails } from "../characters/CharacterDetails";
 import { NoResult } from "./NoResult";
+import { Placeholder } from "./Placeholder";
 
-type OverviewTableProps = {
-  selectedItemId: number;
-  searchItemFn: (param: number) => Promise<void | AxiosResponse<any, any>>;
+type CharactersTableProps = {
+  idArray: number[];
 };
 
-export const OverviewTable: FC<OverviewTableProps> = ({
-  selectedItemId,
-  searchItemFn,
-}) => {
-  const [idArray, setIdArray] = useState<number[]>([]);
+export const CharactersTable: FC<CharactersTableProps> = ({ idArray }) => {
   const [detailsActive, setDetailsActive] = useState<boolean>(false);
   const [details, setDetails] = useState<any>();
 
   // react query
-  const { data: singleItem } = useQuery(["singleItem", selectedItemId], () =>
-    searchItemFn(selectedItemId)
-  );
-
-  const { data: characters } = useQuery(["singleItem", idArray], () =>
+  const { data: characters, status } = useQuery(["singleItem", idArray], () =>
     getMultipleCharacters(idArray)
   );
 
-  //   functions
-  const extractNumber = () => {
-    let arr = singleItem?.data.residents
-      ? singleItem.data.residents.map((el: any) => el.match(/(\d+)/)[0])
-      : [];
-    setIdArray(arr);
-  };
-
+  // functions
   const handleDetails = (id: any, active: boolean) => {
     setDetailsActive(active);
     setDetails(id);
   };
 
-  // hooks
-  useEffect(() => {
-    extractNumber();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [singleItem]);
-
   return (
     <div>
-      <div className="locations__text-box">
-        <h3>
-          <span>Name:</span>
-          {singleItem?.data.name}
-        </h3>
-        <h3>
-          <span>Dimension:</span>
-          {singleItem?.data.dimension}
-        </h3>
-        <h3>
-          <span>Type:</span>
-          {singleItem?.data.type ? singleItem?.data.type : "No Specific Type"}
-        </h3>
-      </div>
-
-      {characters?.data.length > 0 ? (
-        <div className="locations__card-box">
+      {characters?.data?.length > 0 ? (
+        <div className="global-sec__card-box">
           {characters?.data.map((el: any) => {
             return (
               <div className="card" key={el.id}>
@@ -92,8 +55,40 @@ export const OverviewTable: FC<OverviewTableProps> = ({
             );
           })}
         </div>
+      ) : typeof characters?.data === "object" &&
+        typeof characters?.data.id === "number" ? (
+        <div className="global-sec__card-box">
+          <div className="card" key={characters?.data.id}>
+            <p
+              className="card__status"
+              style={{
+                backgroundColor:
+                  characters?.data.status === "Alive"
+                    ? "#2d8646"
+                    : characters?.data.status === "Dead"
+                    ? "#dc3546"
+                    : "#6c757d",
+              }}
+            >
+              {characters?.data?.status}
+            </p>
+            <img
+              className="card__image"
+              src={characters?.data?.image}
+              alt="character"
+            />
+            <h4
+              className="card__name"
+              onClick={() => handleDetails(characters?.data.id, true)}
+            >
+              {characters?.data?.name}
+            </h4>
+          </div>
+        </div>
+      ) : status === "loading" ? (
+        <Placeholder />
       ) : (
-        <NoResult text="No Residents at This Location" />
+        <NoResult text="No Characters at This Location" />
       )}
       {detailsActive && (
         <CharacterDetails details={details} handleDetails={handleDetails} />

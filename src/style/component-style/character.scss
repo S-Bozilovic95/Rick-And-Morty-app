@@ -84,7 +84,6 @@
     transition: 0.25s ease-out;
     z-index: 20;
     overflow: hidden;
-    // animation: details-width 1s forwards;
 
     &__char-box {
       border-radius: 30px;
@@ -107,16 +106,6 @@
             brightness(100%) contrast(80%);
           transition: 0.25s ease-in;
         }
-      }
-    }
-
-    @keyframes details-width {
-      0% {
-        width: 0%;
-      }
-
-      100% {
-        width: 100%;
       }
     }
   }

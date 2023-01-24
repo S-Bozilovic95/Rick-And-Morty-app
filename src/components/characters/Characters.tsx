@@ -23,10 +23,9 @@ export const Characters: FC = () => {
     gender: "",
     species: "",
   });
-  const [loading, setLoading] = useState<boolean>(true);
 
   // query
-  const { data: allCharData } = useQuery("characters", () =>
+  const { data: allCharData, status } = useQuery("characters", () =>
     getAllCharacters()
   );
 
@@ -58,10 +57,6 @@ export const Characters: FC = () => {
   // hooks
   useEffect(() => {
     handleCharacterData(allCharData);
-
-    if (allCharData) {
-      setLoading(false);
-    }
   }, [allCharData]);
 
   return (
@@ -81,7 +76,11 @@ export const Characters: FC = () => {
           activePage={activePage}
         />
         <div>
-          {loading ? <Placeholder /> : <AllCharacters allChar={allChar} />}
+          {status === "loading" ? (
+            <Placeholder />
+          ) : (
+            <AllCharacters allChar={allChar} />
+          )}
 
           <Pagination
             activePage={activePage}

@@ -7,23 +7,9 @@ export const getAllEpisodes = () => {
   });
 };
 
-export const getSingleEpisode = (param: string | undefined) => {
+export const getSingleEpisode = (param: number) => {
   return request({
     url: `/episode/${param}`,
-    method: "GET",
-  });
-};
-
-export const getMultipleEpisodes = (param: number[]) => {
-  return request({
-    url: `/episode/${param}`,
-    method: "GET",
-  });
-};
-
-export const getFilteredEpisodes = (param: any) => {
-  return request({
-    url: `/episode/?${param}`,
     method: "GET",
   });
 };

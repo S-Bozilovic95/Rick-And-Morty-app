@@ -2,44 +2,76 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getAllLocations, getSingleLocation } from "../../api/locations";
 import { Options } from "../global-comp/Options";
-import { OverviewTable } from "../global-comp/OverviewTable";
+import { CharactersTable } from "../global-comp/CharactersTable";
 
 export const Locations: React.FC = () => {
-  const [totalNumber, setTotalNumber] = useState<number>(0);
-  const [selectedItemId, setSelectedItemId] = useState<number>(1);
-
-  // funcitons
-  const handleTotalNumber = (value: number) => {
-    setTotalNumber(value);
-  };
-
-  const handleItemId = (value: number) => {
-    setSelectedItemId(value);
-  };
+  const [totalLocationNumber, setTotalLocationNumber] = useState<number>(0);
+  const [selectedLocationId, setSelectedLocationId] = useState<number>(1);
+  const [idArray, setIdArray] = useState<number[]>([]);
 
   // react query
   const { data: locationsData } = useQuery("locations", () =>
     getAllLocations()
   );
 
+  const { data: singleLocation } = useQuery(
+    ["singleItem", selectedLocationId],
+    () => getSingleLocation(selectedLocationId)
+  );
+
+  // funcitons
+  const handleTotalLocationNumber = (value: number) => {
+    setTotalLocationNumber(value);
+  };
+
+  const handleLocationId = (value: number) => {
+    setSelectedLocationId(value);
+  };
+
+  const extractNumber = () => {
+    let arr = singleLocation?.data.residents
+      ? singleLocation.data.residents.map((el: any) => el.match(/(\d+)/)[0])
+      : [];
+    setIdArray(arr);
+  };
+
   // hooks
   useEffect(() => {
-    handleTotalNumber(locationsData?.data.info.count);
+    handleTotalLocationNumber(locationsData?.data.info.count);
   }, [locationsData]);
 
+  useEffect(() => {
+    extractNumber();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [singleLocation]);
+
   return (
-    <section className="locations container">
+    <section className="global-sec container">
       <h3 className="title">Locations</h3>
-      <div className="locations__main-box">
+      <div className="global-sec__text-box">
+        <h3>
+          <span>Name:</span>
+          {singleLocation?.data.name}
+        </h3>
+        <h3>
+          <span>Dimension:</span>
+          {singleLocation?.data.dimension}
+        </h3>
+        <h3>
+          <span>Type:</span>
+          {singleLocation?.data.type
+            ? singleLocation?.data.type
+            : "No Specific Type"}
+        </h3>
+      </div>
+      <div className="global-sec__main-box">
         <Options
           type={"Location"}
-          totalNumber={totalNumber}
-          handleItemId={handleItemId}
+          totalNumber={totalLocationNumber}
+          handleItemId={handleLocationId}
         />
-        <OverviewTable
-          selectedItemId={selectedItemId}
-          searchItemFn={getSingleLocation}
-        />
+
+        <CharactersTable idArray={idArray} />
       </div>
     </section>
   );

@@ -13,17 +13,3 @@ export const getSingleLocation = (param: number) => {
     method: "GET",
   });
 };
-
-export const getMultipleLocations = (param: string) => {
-  return request({
-    url: `/location/${param}`,
-    method: "GET",
-  });
-};
-
-export const getFilteredLocations = (param: any) => {
-  return request({
-    url: `/location/?${param}`,
-    method: "GET",
-  });
-};
