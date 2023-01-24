@@ -19,8 +19,11 @@ export const Options: FC<OptionsProps> = ({
   };
 
   return (
-    <div className={activeOptions ? "options options-active" : "options"}>
-      <div className="options__bar" onClick={() => handleActiveOptions()}>
+    <div
+      className={activeOptions ? "options options-active" : "options"}
+      onClick={() => handleActiveOptions()}
+    >
+      <div className="options__bar">
         <span>{type + "s"}</span>
         <i>
           <FiChevronDown />
